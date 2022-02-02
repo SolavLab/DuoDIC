@@ -52,9 +52,9 @@ The entire 3D-DIC procedure in `DuoDIC` is organized in four main scripts, which
 In this step, the intrinsic and extrinsic parameters of both cameras are computed, by integrating functions from MathWorks Computer Vision Toolbox, which implement algorithms by Zhang [@Zhang2000], Heikkila and Silven [@Heikkila1997], Bouguet [@Bouguet], and Bradski and Kaehler [@Bradski2008]. The script receives multiple images of a checkerboard target captured simultaneously by two cameras in a stereo pair. The checkerboard pattern in each image is automatically detected, and used for calibrating the camera intrinsic and stereo parameters. The intrinsic parameters include focal lengths, principal point (optical center), and up to 6 distortion coefficients. The user can choose between [0,2,3] radial distortion coefficients, [0,2] tangential distortion coefficients, and [0,1] skew parameter. The stereo camera parameters comprise the position and orientation of the second camera with respect to the first. The estimated camera parameters are then used for computing the reprojection errors, which represent the distance between the reprojected and the detected pattern points, and comprise the accuracy of the estimated camera parameters.
 
 ## Step 2: Image cross-correlation (2D-DIC)
-In this step, the toolbox receives multiple images of the speckled test object captured simultaneously by the same camera pair. Typically, the first pair of images represents the unloaded (or undeformed) configuration and the rest of the images represent deformed states. Ncorr toolbox [@Blaber2015] is utilized in this step to detect a dense grid of matching points on all images. Although Ncorr was created as a 2D-DIC toolbox, receiving images from a single camera, `DuoDIC` utilizes it to detect matching points on images taken from two different views. All the images from both cameras are correlated with the reference image, to detect corresponding points in the selected region of interest (ROI), as demonstrated in Figure \autoref{fig:corr}. Furthermore, the grid of correlated points is meshed with triangular elements, which are used for deformation and strain calculation, as described in Step 4.
+In this step, the toolbox receives multiple images of the speckled test object captured simultaneously by the same camera pair. Typically, the first pair of images represents the unloaded (or undeformed) configuration and the rest of the images represent deformed states. Ncorr toolbox [@Blaber2015] is utilized in this step to detect a dense grid of matching points on all images. Although Ncorr was created as a 2D-DIC toolbox, receiving images from a single camera, `DuoDIC` utilizes it to detect matching points on images taken from two different views. All the images from both cameras are correlated with the reference image, to detect corresponding points in the selected region of interest (ROI), as demonstrated in \autoref{fig:corr}. Furthermore, the grid of correlated points is meshed with triangular elements, which are used for deformation and strain calculation, as described in Step 4.
 
-![image point correspondence computed using `Ncorr` and `DuoDIC`.\label{fig:corr}](fig_corr.png)
+![image point correspondence computed using `Ncorr` and `DuoDIC`.\label{fig:corr}](fig_corr.svg)
 
 
 ## Step 3: 3D reconstruction
@@ -77,8 +77,8 @@ To assess the metrological performance, we performed a rigid body motion experim
 
 ## Uniaxial tension
 A rubber dog-bone specimen was mounted such that its left end is fixed and its right end is moved to the right in 20 steps of 1 mm. In each step, simultaneous images were captured by both cameras. Example results are shown in Figure ??? in terms of the displacement magnitude and the principal strains.
-as demonstrated in Figure \autoref{fig:princ_stretch_3d}
-as demonstrated in Figure \autoref{fig:disp_2d}
+as demonstrated in \autoref{fig:princ_stretch_3d}
+as demonstrated in \autoref{fig:disp_2d}
 
 ![Principal stretches.\label{fig:princ_stretch_3d}](fig_princ_stretch_3d.png)
 
