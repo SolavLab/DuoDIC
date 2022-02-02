@@ -54,7 +54,7 @@ In this step, the intrinsic and extrinsic parameters of both cameras are compute
 ## Step 2: Image cross-correlation (2D-DIC)
 In this step, the toolbox receives multiple images of the speckled test object captured simultaneously by the same camera pair. Typically, the first pair of images represents the unloaded (or undeformed) configuration and the rest of the images represent deformed states. Ncorr toolbox [@Blaber2015] is utilized in this step to detect a dense grid of matching points on all images. Although Ncorr was created as a 2D-DIC toolbox, receiving images from a single camera, `DuoDIC` utilizes it to detect matching points on images taken from two different views. All the images from both cameras are correlated with the reference image, to detect corresponding points in the selected region of interest (ROI), as demonstrated in \autoref{fig:corr}. Furthermore, the grid of correlated points is meshed with triangular elements, which are used for deformation and strain calculation, as described in Step 4.
 
-![image point correspondence computed using `Ncorr` and `DuoDIC`.\label{fig:corr}](fig_corr.svg)
+![image point correspondence computed using `Ncorr` and `DuoDIC`.\label{fig:corr}](fig_corr.png)
 
 
 ## Step 3: 3D reconstruction
