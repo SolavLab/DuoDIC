@@ -73,9 +73,7 @@ The stereo camera setup consisted of two machine-vision cameras (BFS-U3-51S5M-C,
 ## Rigid body motion (null strain) test
 To assess the metrological performance, we performed a rigid body motion experiment, whereby a speckled cylinder was translated using a motorized linear translation stage (PT1/M-Z8, Thorlabs, USA), in 10 steps of 0.1 mm increment. This test can be used to quantify the errors in the displacement, by comparing the displacements measured using the translation stage with those computed using 3D-DIC. In addition, since strain is expected to be zero for any rigid body motion, any non-zero strains measured represent measurement errors.
 
-Figure of test and results as demonstrated in Figure \autoref{fig:errors}
-
-![Displacement and strain errors.\label{fig:errors}](fig_errors.png)
+<!-- ![Displacement and strain errors.\label{fig:errors}](fig_errors.png) -->
 
 ## Uniaxial tension
 A rubber dog-bone specimen was mounted such that its left end is fixed and its right end is moved to the right in 20 steps of 1 mm. In each step, simultaneous images were captured by both cameras. Example results are shown in Figure ??? in terms of the displacement magnitude and the principal strains.
@@ -83,6 +81,7 @@ as demonstrated in Figure \autoref{fig:princ_stretch_3d}
 as demonstrated in Figure \autoref{fig:disp_2d}
 
 ![Principal stretches.\label{fig:princ_stretch_3d}](fig_princ_stretch_3d.png)
+
 ![Displacement magnitudes.\label{fig:disp_2d}](fig_disp_2d.png)
 
 ## Inflation
