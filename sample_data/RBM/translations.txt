@@ -1,0 +1,1 @@
+The translation stage was moved 0.1 mm in each step
