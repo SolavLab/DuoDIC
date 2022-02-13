@@ -22,36 +22,36 @@ switch saveButton
             % Path where to save the camera parameters
             savePath = uigetdir(fileparts(structPath),'Select a folder for saving the results');
             
-            % check if DIC3DpairResults in this folder already exist
-            fileExist=false;
-            [~,name,~]=fileparts(structPath);
-            filenames=[savePath '\DIC3DPPresults.mat'];
-            if exist(filenames,'file')
-                fileExist=true;
-            end
-            
-            if fileExist                
-                promptMessage=cell(2,1);
-                promptMessage{1}='The following output file already exists: ';
-                promptMessage{5}='Do you want to overwrite?';
-                [~,fileName,ext]=fileparts(filenames);
-                promptMessage{3}=[fileName ext];
-
-                titleBarCaption = 'Overwrite?';
-                buttonText = questdlg(promptMessage, titleBarCaption, 'Yes', 'No', 'Yes');
-                switch buttonText
-                    case 'Yes'
-                        % User wants to overwrite. % Set flag to continue
-                        continueLog=true(1);
-                    case 'No'
-                        % User does not want to overwrite. % Set flag to not do the write.
-                        waitfor(warndlg('Choose another folder to save the results','OK'));
-                        % let user choose a different folder to save the file
-                end
-            else
-                % if file doesn't esixt, cotinue.
+%             % check if DIC3DpairResults in this folder already exist
+%             fileExist=false;
+%             [~,name,~]=fileparts(structPath);
+%             filenames=[savePath '\DIC3DPPresults.mat'];
+%             if exist(filenames,'file')
+%                 fileExist=true;
+%             end
+%             
+%             if fileExist                
+%                 promptMessage=cell(2,1);
+%                 promptMessage{1}='The following output file already exists: ';
+%                 promptMessage{5}='Do you want to overwrite?';
+%                 [~,fileName,ext]=fileparts(filenames);
+%                 promptMessage{3}=[fileName ext];
+% 
+%                 titleBarCaption = 'Overwrite?';
+%                 buttonText = questdlg(promptMessage, titleBarCaption, 'Yes', 'No', 'Yes');
+%                 switch buttonText
+%                     case 'Yes'
+%                         % User wants to overwrite. % Set flag to continue
+%                         continueLog=true(1);
+%                     case 'No'
+%                         % User does not want to overwrite. % Set flag to not do the write.
+%                         waitfor(warndlg('Choose another folder to save the results','OK'));
+%                         % let user choose a different folder to save the file
+%                 end
+%             else
+%                 % if file doesn't esixt, cotinue.
                 continueLog=true(1);
-            end
+%             end
         end
     
     case 'No'

@@ -42,14 +42,6 @@ nImages= numel(DIC3D.Points3D);
 
 % pre-allocate 3D-DIC result variables
 DIC3D.Points3D_ARBM=cell(1,nImages);
-DIC3D.Disp.DispVec=cell(1,nImages);
-DIC3D.Disp.DispMgn=cell(1,nImages);
-DIC3D.Disp.DispVec_ARBM=cell(1,nImages);
-DIC3D.Disp.DispMgn_ARBM=cell(1,nImages);
-DIC3D.FaceCentroids=cell(1,nImages);
-DIC3D.FaceCentroids_ARBM=cell(1,nImages);
-DIC3D.FaceCorrComb=cell(1,nImages);
-DIC3D.FaceIsoInd=cell(1,nImages);
 DIC3D.RBM.RotMat=cell(1,nImages);
 DIC3D.RBM.TransVec=cell(1,nImages);
 
@@ -59,20 +51,7 @@ hw = waitbar(0,'Calculating displacements and rigid body motion');
 
 for ii=1:nImages % loop over images (time frames)
     waitbar(ii/(nImages));
-    
-    % Face correlation coefficient (worst)
-    DIC3D.FaceCorrComb{ii}=max(DIC3D.corrComb{ii}(F),[],2);
-    
-    % compute face centroids
-    for iface=1:size(F,1)
-        DIC3D.FaceCentroids{ii}(iface,:)=mean(DIC3D.Points3D{ii}(F(iface,:),:));
-    end
-    
-    % Compute displacements between frames (per point)
-    DispVec=DIC3D.Points3D{ii}-DIC3D.Points3D{1};
-    DIC3D.Disp.DispVec{ii}=DispVec;
-    DIC3D.Disp.DispMgn{ii}=sqrt(DispVec(:,1).^2+DispVec(:,2).^2+DispVec(:,3).^2);
-    
+     
     % Compute rigid body transformation between point clouds
     [RotMat,TransVec,Points3D_ARBM]=rigidTransformation(DIC3D.Points3D{ii},DIC3D.Points3D{1});
     DIC3D.RBM.RotMat{ii}=RotMat;
@@ -84,7 +63,7 @@ for ii=1:nImages % loop over images (time frames)
     DIC3D.Disp.DispVec_ARBM{ii}=DispVec;
     DIC3D.Disp.DispMgn_ARBM{ii}=sqrt(DispVec(:,1).^2+DispVec(:,2).^2+DispVec(:,3).^2);
     
-    % compute face centroids - after transformation
+    % compute face centroids - after RBM
     for iface=1:size(F,1)
         DIC3D.FaceCentroids_ARBM{ii}(iface,:)=mean(Points3D_ARBM(F(iface,:),:));
     end
@@ -96,6 +75,7 @@ delete(hw);
 deformationStruct=triSurfaceDeformation(F,DIC3D.Points3D{1},DIC3D.Points3D);
 DIC3D.Deform=deformationStruct;
 
+% compute deformation and strains (per triangular face) after RBM
 deformationStruct_ARBM=triSurfaceDeformation(F,DIC3D.Points3D_ARBM{1},DIC3D.Points3D_ARBM);
 DIC3D.Deform_ARBM=deformationStruct_ARBM;
 
@@ -108,7 +88,6 @@ end
 DIC3DPPresults=DIC3D;
 
 %% save results
-nPairs=size(DIC3DPPresults.pairIndices,1);
 if save3DDIClogic
     saveName=fullfile(savePath, 'DIC3DPPresults.mat');
     icount=1;

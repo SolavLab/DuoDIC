@@ -71,7 +71,7 @@ for ii=1:nImages
     waitbar(ii/(nImages));
     
     P3D=NaN(size(DIC2DPoints{1},1),3);
-    DIC3D.reprojectionErrors{ii,1}=NaN(size(DIC2DPoints{1},1),1);
+    DIC3D.reprojectionErrors{1,ii}=NaN(size(DIC2DPoints{1},1),1);
     
     logicNoNan=~(any(isnan(DIC2DPointsL{ii}),2) | any(isnan(DIC2DPointsR{ii}),2));
     PointNoNanL=DIC2DPointsL{ii}(logicNoNan,:);
@@ -92,29 +92,26 @@ for ii=1:nImages
     DIC2DPointsR_ud(times(end):end,:) = undistortPoints(PointNoNanR(times(end):end,:),stereoParams.CameraParameters2);
     
     % triangulate
-    [P3D(logicNoNan,:),DIC3D.reprojectionErrors{ii,1}(logicNoNan,:)] = triangulate(DIC2DPointsL_ud,DIC2DPointsR_ud,stereoParams);
-    DIC3D.Points3D{ii,1}=P3D;
+    [P3D(logicNoNan,:),DIC3D.reprojectionErrors{1,ii}(logicNoNan,:)] = triangulate(DIC2DPointsL_ud,DIC2DPointsR_ud,stereoParams);
+    DIC3D.Points3D{1,ii}=P3D;
     
     % Combined (worst) correlation coefficients
-    DIC3D.corrComb{ii,1}=max([CorCoeff{ii} CorCoeff{ii+nImages}],[],2);
+    DIC3D.corrComb{1,ii}=max([CorCoeff{ii} CorCoeff{ii+nImages}],[],2);
     % Face correlation coefficient (worst)
-    DIC3D.FaceCorrComb{ii,1}=max(DIC3D.corrComb{ii}(F),[],2);
+    DIC3D.FaceCorrComb{1,ii}=max(DIC3D.corrComb{1,ii}(F),[],2);
 
     % compute face centroids
     for iface=1:size(F,1)
-        DIC3D.FaceCentroids{ii,1}(iface,:)=mean(P3D(F(iface,:),:));
+        DIC3D.FaceCentroids{1,ii}(iface,:)=mean(P3D(F(iface,:),:));
     end
     
     % Compute displacements between frames (per point)
-        DispVec=DIC3D.Points3D{ii,1}-DIC3D.Points3D{1,1};
-        DIC3D.Disp.DispVec{ii,1}=DispVec;
-        DIC3D.Disp.DispMgn{ii,1}=sqrt(DispVec(:,1).^2+DispVec(:,2).^2+DispVec(:,3).^2);
+        DispVec=DIC3D.Points3D{1,ii}-DIC3D.Points3D{1,1};
+        DIC3D.Disp.DispVec{1,ii}=DispVec;
+        DIC3D.Disp.DispMgn{1,ii}=sqrt(DispVec(:,1).^2+DispVec(:,2).^2+DispVec(:,3).^2);
 end
 delete(hw);
 
-DIC3D.pairIndices=[1 2];
-DIC3D.FacePairInds=ones(size(DIC3D.Faces,1),1);
-DIC3D.PointPairInds=ones(size(DIC3D.Points3D{1},1),1);
 
 DIC3D.DIC2Dinfo{1}=DIC2D;
 
