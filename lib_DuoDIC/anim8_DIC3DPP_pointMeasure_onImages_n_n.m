@@ -194,9 +194,9 @@ anim8(hf,animStruct);
 
 %% Extra Functions
 addFigureButtons;
-addCorrCoef_n_n(hf,animStruct,optStruct,DIC3DPPresults,Pre);%AYS 12/9
-addMarkerSize(hf);%AYS 12/9
-optStructOld=optStruct; addChangePlotMenu_n_n(hf,DIC3DPPresults,optStructOld);%AYS 12/9
+addCorrCoef_n_n(hf,animStruct,optStruct,DIC3DPPresults,Pre);
+addMarkerSize(hf);
+optStructOld=optStruct; addChangePlotMenu_n_n(hf,DIC3DPPresults,optStructOld);
 
 end
 

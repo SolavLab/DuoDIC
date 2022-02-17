@@ -14,35 +14,29 @@ switch nargin
         F=varargin{1};
         V=varargin{2};
         C=varargin{3};
-        smoothPar=varargin{4};%lambda
+        smoothPar=varargin{4};
 end
-%{ 
-AYS 12/7
-smoothParDefault.lambda1=0.5;
-smoothParDefault.lambda2=0.5;
-smoothParDefault.n=1;
-smoothPar=structComplete(smoothPar,smoothParDefault,1);%AYS
-%}
+
 %% Get connectivity array
 
 
 [connectivityStruct]=patchConnectivity(F,V);
-faceFaceConnectivity=connectivityStruct.face.face;% Rows of 3 face that are in contact, row 1 has in contact with 2 3 4 in 2  find 1 3 5
+faceFaceConnectivity=connectivityStruct.face.face;% Each rows repersents a face. In the columns are the face number (row) that are in contact with the face
 nDims=size(C,2); %Number of dimensions
 logicValid=faceFaceConnectivity>0;
 C_smooth=C;
 C_smooth_step=C;
 
-%% Outer Condictivty Problem edges are weird color
+%% Finding the outer layer faces
 X=NaN(size(C,1),6);
-for i=1:size(faceFaceConnectivity,1)
+for ii=1:size(faceFaceConnectivity,1)
     k=1;
-    for j=1:size(faceFaceConnectivity,2)
-        f=faceFaceConnectivity(i,j);
+    for jj=1:size(faceFaceConnectivity,2)
+        f=faceFaceConnectivity(ii,jj); %takig a face that is in contact  
         if f~= 0
              for l=1:3
-                 if faceFaceConnectivity(f,l)~=i && faceFaceConnectivity(f,l)~=0
-                    X(i,k)=C(faceFaceConnectivity(f,l));
+                 if faceFaceConnectivity(f,l)~=ii && faceFaceConnectivity(f,l)~=0 %Taking outer faces making sure there not out side of the figure and no the same face
+                    X(ii,k)=C(faceFaceConnectivity(f,l));% Takeing the value (color) of each face that are in contant  
                     k=k+1;
                  end
              end
@@ -50,20 +44,18 @@ for i=1:size(faceFaceConnectivity,1)
     end
 end
 
-
-%% Continue
 %% Problem: you cant add both lambda it gets  smaller then 1
 for qIter=1:smoothPar.n 
     %Loop for all dimensions
     %Takeing the next face
     for qDim=1:1:nDims
         Xp1=NaN(size(C,1),size(faceFaceConnectivity,2));
-        Xp1(logicValid)=C_smooth(faceFaceConnectivity(logicValid),qDim);%Colors of all 3 face 
-        Xp1=nanmean(Xp1,2);%Average to row   
+        Xp1(logicValid)=C_smooth(faceFaceConnectivity(logicValid),qDim);% Takeing the value (color) of each face that are in contant 
+        Xp1=nanmean(Xp1,2);%Average of the faces in contact       
         C_smooth_step(:,qDim)=Xp1; 
     end
     Xp2=nanmean(X,2);
-    %taking them into acount
+    %taking them into acount the percentage that is wanted 
     C_smooth=(1-(smoothPar.lambda1+smoothPar.lambda2)).*C_smooth+smoothPar.lambda1.*C_smooth_step+smoothPar.lambda2.*Xp2;
 end
 

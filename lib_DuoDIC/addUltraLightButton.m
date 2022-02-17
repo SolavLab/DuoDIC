@@ -212,7 +212,7 @@ end
 
 
 
-function  doCallback(obj, evd) %#ok
+function  doCallback(obj, evd)
 global LogicBtn
     if ~strcmp(get(obj,'UserData'),'Cancel')
       set(gcbf,'UserData','OK');
@@ -220,8 +220,7 @@ global LogicBtn
      LogicBtn=1;
     else
       delete(gcbf)
-      LogicBtn=0;
-     
+      LogicBtn=0;   
     end
 end 
 

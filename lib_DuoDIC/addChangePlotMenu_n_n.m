@@ -1,7 +1,7 @@
 function []=addChangePlotMenu_n_n(varargin)
 %% Changing Figures
-% addChangePlotMenu
-% addChangePlotMenu(hf,DIC3DPPresults,optStructOld,RBMlogic)
+% addChangePlotMenu_n_n
+% addChangePlotMenu_n_n(hf,DIC3DPPresults,optStructOld);
 
 % This script creates a new menu in a figure's toolbar to manipulate
 % Opening a menu in order to change plot 
@@ -14,12 +14,6 @@ switch nargin
         hf=varargin{1};
         DIC3DPPresults=varargin{2};
         optStruct=varargin{3};
-    case 5
-        hf=varargin{1};
-        DIC3DPPresults=varargin{2};
-        optStruct=varargin{3};
-        RBMlogic=varargin{4};
-        Old_set=varargin{5};
 end
 
 Prompt={'--Select Next Plot--';
@@ -42,16 +36,7 @@ Prompt={'--Select Next Plot--';
     'Points with color as dispZ (Z Displacement)';...% 17
     };
 
-
-% switch nargin
-%     
-%     case 4
-    uicontrol(hf,'Style','popupmenu','Position',[10 70 160 50],'String',Prompt,'FontSize',12,'Callback',{@changePlotFunc,{hf,DIC3DPPresults,optStruct}} );
-%         
-%     case 5
-   % uicontrol(hf,'Style','popupmenu','Position',[10 70 180 50],'String',Prompt,'FontSize',12,'Callback',{@changePlotFunc,{hf,DIC3DPPresults,optStruct,RBMlogic,Old_set}} );
-   
-% end
+uicontrol(hf,'Style','popupmenu','Position',[10 70 160 50],'String',Prompt,'FontSize',12,'Callback',{@changePlotFunc,{hf,DIC3DPPresults,optStruct}} );
 
 
 end

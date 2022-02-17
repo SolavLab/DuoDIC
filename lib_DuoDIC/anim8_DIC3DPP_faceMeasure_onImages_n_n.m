@@ -204,9 +204,9 @@ animStruct=animStructUpdate_n_n(hf,animStruct,DIC3DPPresults,Pre);
 anim8(hf,animStruct);
 %% Extra Apps
 addFigureButtons;
-addSmoothCont_n_n(hf,animStruct,optStruct,DIC3DPPresults,Pre);%AYS 12/7
-addCorrCoef_n_n(hf,animStruct,optStruct,DIC3DPPresults,Pre);%AYS 12/7
-optStructOld=optStruct; addChangePlotMenu_n_n(hf,DIC3DPPresults,optStructOld);%AYS 12/9
+addSmoothCont_n_n(hf,animStruct,optStruct,DIC3DPPresults,Pre);
+addCorrCoef_n_n(hf,animStruct,optStruct,DIC3DPPresults,Pre);
+optStructOld=optStruct; addChangePlotMenu_n_n(hf,DIC3DPPresults,optStructOld);
 end
 
 

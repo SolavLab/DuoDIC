@@ -78,7 +78,7 @@ end
 %% Ambient strength function  ambientStrengthFunc
 
 function changePlotFunc(src,event,inputCell)
-% Get former info
+%% Get former info Smooth, CorrCoff, View, Light
 a=size(inputCell);
 switch a(2)
     case 4 %For former faceMeasure and faceMeasureDirection
@@ -98,7 +98,6 @@ switch a(2)
     Old_set.CameraViewAngle=ha.CameraViewAngle;
     Old_set.CameraPosition=ha.CameraPosition;
     Old_set.CameraTarget=ha.CameraTarget;
-    %Asaf 1.13
     Old_set.Smoothlambda1=hf.UserData.optStruct.Smoothlambda1;
     Old_set.Smoothlambda2=hf.UserData.optStruct.Smoothlambda2;
     Old_set.SmoothLogic=hf.UserData.optStruct.SmoothLogic;
@@ -154,7 +153,7 @@ switch a(2)
         Old_set.Lightel=NaN;
     end
 
-    case 5 %For former faceMeasure and faceMeasureDirection
+    case 5 %For former Face Plots
         
     hf = inputCell{1};
     DIC3DPPresults=inputCell{2};

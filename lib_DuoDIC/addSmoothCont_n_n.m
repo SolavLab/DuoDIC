@@ -47,9 +47,8 @@ animStruct=inputCell{2};
 optStruct=inputCell{3};
 DIC3DPPresults=inputCell{4};
 Pre=inputCell{5};
-
 optStruct=hf.UserData.optStruct;
-
+InputLogic=1;
 
 %% Input info from user
 smoothAnswer=questdlg('Do you want to smoothen the face values?','Smooth?','Yes','No','Yes');
@@ -58,6 +57,7 @@ switch smoothAnswer
         ConctionAnswer=questdlg('What level of connectivity?','Connectivity','One','Two','One');
         switch ConctionAnswer
             case 'One'
+                while InputLogic==1% Makeing sure th eright Input 
                 prompt1={'Enter level of smooth between 0-1 (if you leave empty, the default is 0.5)','Enter number of Repetitions (if you leave empty, the default is 1)'};
                 dlgtitle ='Input';
                 dims=[1,50];
@@ -65,26 +65,35 @@ switch smoothAnswer
                 if ~isempty(answer)
                 smoothPar.lambda1=str2double(answer{1});
                 if smoothPar.lambda1<0 ||smoothPar.lambda1>1
-                    error('Error Wrong Input')
+                        uiwait(msgbox({'Wrong Input'; 'The level of smooth must be between 0 - 1'},'Wrong Input') );                     
+                        InputLogic=1;
+                else
+                     InputLogic=0;
                 end
-                if isnan(smoothPar.lambda1)% Default
+                if isnan(smoothPar.lambda1)%Input Default
                     smoothPar.lambda1=0.5;
                 end
                 optStruct.Smoothlambda1=smoothPar.lambda1;
-                smoothPar.n=str2double(answer{2});% Default
-                if isnan(smoothPar.n)% Default
+                smoothPar.n=str2double(answer{2});%Input Default
+                if isnan(smoothPar.n)%Input Default
                     smoothPar.n=1;
                 else
                     if isreal(smoothPar.n) && rem(smoothPar.n,1)==0
+                        InputLogic=0;                        
                     else
-                        error('Error Wrong Input');
+                        uiwait(msgbox({'Wrong Input';'Input must be a natural numbers'},'Wrong Input')) ;
+                        InputLogic=1;
                     end
                 end
                 optStruct.Smoothlambda2=[];
                 optStruct.Smoothn=smoothPar.n;
-                optStruct.SmoothLogic=1;
+                optStruct.SmoothLogic=1;% Level Of Smooth
+                else
+                    break
+                end
                 end
             case 'Two'
+                while InputLogic==1% Makeing sure th eright Input               
                 prompt2={'Enter level of smooth for first level between 0-1 (if you leave empty, the default is 0.25 each )','Enter level of smooth for second level between 0-1 (if you leave empty, the default is 0.25)','Enter number of Repetition (if you leave empty, the default is 1)'};
                 dlgtitle ='Input';
                 dims=[1,50];
@@ -93,26 +102,36 @@ switch smoothAnswer
                 smoothPar.lambda1=str2double(answer{1});
                 smoothPar.lambda2=str2double(answer{2});
                 if smoothPar.lambda1<0 ||smoothPar.lambda2<0 ||(smoothPar.lambda2+smoothPar.lambda1)>1
-                    error('Error Wrong Input')
+                    uiwait(msgbox({'Wrong Input'; 'The sum of the levels must be between 0 - 1, and positive '},'Wrong Input') );
+                    InputLogic=1;
+                else
+                     InputLogic=0;
                 end
-                if isnan(smoothPar.lambda1)% Default
+                if isnan(smoothPar.lambda1)%Input Default
                     smoothPar.lambda1=0.25;
                 end
-                if isnan(smoothPar.lambda2)% Default
+                if isnan(smoothPar.lambda2)%Input Default
                     smoothPar.lambda2=0.25;
                 end
                 optStruct.Smoothlambda1=smoothPar.lambda1;
                 optStruct.Smoothlambda2=smoothPar.lambda2;
-                smoothPar.n=str2double(answer{3});% Default
-                if isnan(smoothPar.n)% Default
+                smoothPar.n=str2double(answer{3});%Input Default
+                if isnan(smoothPar.n)%Input Default
                     smoothPar.n=1;
-                    if ~isreal(smoothPar.n) && (rem(smoothPar.n,1)~=0)
-                        error('Error Wrong Input');
+                else
+                    if isreal(smoothPar.n) && rem(smoothPar.n,1)==0
+                        InputLogic=0;                        
+                    else
+                       uiwait( msgbox({'Wrong Input';'Input must be a natural numbers'},'Wrong Input'));
+                        InputLogic=1;
                     end
                 end
                 optStruct.Smoothn=smoothPar.n;
-                optStruct.SmoothLogic=2;
-                end
+                optStruct.SmoothLogic=2;% Level Of Smooth
+                else
+                    break
+                end                
+                end   
         end
     case 'No'
         optStruct.SmoothLogic=0;

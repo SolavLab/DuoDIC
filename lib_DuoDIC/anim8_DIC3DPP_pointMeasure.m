@@ -161,7 +161,7 @@ else
 end
 
 
-Pre{it}=Pnow;%Save Orignal Pnow
+Pre{it}=Pnow;%Save Orignal 
 
 if ~isempty(optStruct.maxCorrCoeff)
     corrNow=DIC3DPPresults.corrComb{it};
@@ -275,7 +275,7 @@ end
 anim8(hf,animStruct);
  %% Adding Buttons 
 addColorbarLimitsButton(hf);
-addColormapButton(hf); % only applicable for plots without designated colors
+addColormapButton(hf); 
 addCorrCoef(hf,animStruct,optStruct,DIC3DPPresults,Pre);
 addMarkerSize(hf);
 

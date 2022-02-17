@@ -337,6 +337,7 @@ ax.CameraUpVector=[0 0 optStruct.zDirection];
 Colors=gjet(nPairs);
 
 colormap(optStruct.colorMap);
+view(180 ,255);
 if colorBarLogic
     cbh=colorbar;
     caxis(optStruct.colorBarLimits);
@@ -404,7 +405,7 @@ for it=1:nFrames
     ic=ic+1;
 end
 anim8(hf,animStruct);
-view(180,-75);
+
 
 end
 

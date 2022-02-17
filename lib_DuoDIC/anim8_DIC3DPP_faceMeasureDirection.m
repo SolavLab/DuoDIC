@@ -129,19 +129,19 @@ for is=1:nStrains
         case 'Lamda2'
             directionStringCell{is}='Epc2vecCur';
             optStruct.supTitleString{is}='2nd principal stretch';
-        case 'EShearMax1'%AYS
+        case 'EShearMax1'
             faceMeasureCell{is}='EShearMax';
             directionStringCell{is}='EShearMaxVec1';
             optStruct.supTitleString{is}='1st Lagrangian Max shear strain (Lagrangian)';
-        case 'EShearMax2'%AYS
+        case 'EShearMax2'
             faceMeasureCell{is}='EShearMax';
             directionStringCell{is}='EShearMaxVec2';
             optStruct.supTitleString{is}='2nd Lagrangian Max shear strain (Lagrangian)'; 
-        case 'eShearMax1'%AYS
+        case 'eShearMax1'
             faceMeasureCell{is}='eShearMax';
             directionStringCell{is}='eShearMaxVec1';
             optStruct.supTitleString{is}='1st Eulerian Max shear strain (Eulerian)';
-         case 'eShearMax2'%AYS
+         case 'eShearMax2'
             faceMeasureCell{is}='eShearMax';
             directionStringCell{is}='eShearMaxVec2';
             optStruct.supTitleString{is}='2nd Eulerian Max shear strain (Eulerian)';   
@@ -232,12 +232,10 @@ end
 
 %% Plot
 
-animStruct=struct;%here?
+animStruct=struct;
 
 hf=cFigure;
 hf.Units='normalized'; hf.OuterPosition=[.05 .05 .9 .9]; hf.Units='pixels';
-CFnowBase=FC; %Save Orginal FC
-
 
 for is=1:nStrains
     subplot(1,nStrains,is);
@@ -370,12 +368,12 @@ if Narg==2
    
   % updating the light to look like the former  
     if~isnan(Old_set.Lightaz) && ~isnan(Old_set.Lightel)
-        for ia = 1:size(ha,1)%light
+        for ia = 1:size(ha,1)
             axes(ha(ia));
-            h(ia) = camlight(Old_set.Lightaz,Old_set.Lightel);%how to move light?!
+            h(ia) = camlight(Old_set.Lightaz,Old_set.Lightel);
             
         end 
-        numPatches = size(hpatches,1);%Why does this change too bright   
+        numPatches = size(hpatches,1);   
         for ii = 1:numPatches
             hpatches(ii).AmbientStrength=Old_set.AmbientStrength;
             hpatches(ii).DiffuseStrength=Old_set.DiffuseStrength;
@@ -392,7 +390,6 @@ if Narg==2
     hf.UserData.optStruct.CorCoeffLogic=Old_set.CorCoeffLogic;
     animStruct=animStructUpdate(hf,animStruct,optStruct,DIC3DPPresults,Pre);
 end
-view(180 255);
 anim8(hf,animStruct);
  %% Adding Buttons 
 addColorbarLimitsButton(hf);

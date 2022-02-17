@@ -41,16 +41,12 @@ end
 %% Face Cleaning function  FaceCleanFunc %AYS
 
 function FaceCleanFunc(~,~,inputCell)
-%% Defining variables 
-%global  Coefficient;%global Smoothlambda Smoothn SmoothLogic
-   
+%% Defining variables    
     hf=inputCell{1};
     animStruct=inputCell{2};
     optStruct=inputCell{3};
     DIC3DPPresults=inputCell{4};
     Pre=inputCell{5};
-
-
 %% Input info from user
 answer = inputdlg({'Enter maximum correlation coefficient to keep points (leave blank for keeping all points)'},'Input',[1,50]);
 if ~isempty(answer)
@@ -72,7 +68,6 @@ drawnow ;
 ResetPlot(hf);
 end
 end
-
 
 %% DuoDIC: 2-camera 3D-DIC toolbox
 %% Copyright (C) 2022 Dana Solav - All rights reserved.

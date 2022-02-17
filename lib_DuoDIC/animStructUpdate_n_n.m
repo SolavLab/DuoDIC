@@ -32,9 +32,9 @@ if ~isempty(hpatches)
 end
 
 nFrames=size(animStruct.Time,2);
-%%
+%% Inputing Original Faces and Points
 switch optStruct.type
-    case {'J','Lamda1','Lamda2','Emgn','emgn','Eeq','eeq','EShearMax','eShearMax','Epc1','Epc2','epc1','epc2'}
+    case {'J','Lamda1','Lamda2','Emgn','emgn','Eeq','eeq','EShearMax','eShearMax','Epc1','Epc2','epc1','epc2'}% Face plots  
         FC=Pre.FC;
         Points=Pre.Points;
         dataLimits=[min(min(cell2mat(FC))) max(max(cell2mat(FC)))];
@@ -45,7 +45,7 @@ switch optStruct.type
             cNow1{ii}=FC{ii};
             cNow2{ii}=FC{ii};
         end
-    case{'DispMgn','DispX','DispY','DispZ'}   
+    case{'DispMgn','DispX','DispY','DispZ'}% Point plots       
         PC=Pre.PC;
         Points=Pre.Points;
         for ii=1:nFrames
@@ -58,17 +58,16 @@ switch optStruct.type
         end
 end
 
-%%
+%% Updating Correlation Coefficient 
 if CorCoeffLogic
     switch optStruct.type
-      case {'J','Lamda1','Lamda2','Emgn','emgn','Eeq','eeq','EShearMax','eShearMax','Epc1','Epc2','epc1','epc2'}   
+      case {'J','Lamda1','Lamda2','Emgn','emgn','Eeq','eeq','EShearMax','eShearMax','Epc1','Epc2','epc1','epc2'}% Face plots    
         for it=1:1:nFrames   
             corrNow=DIC3DPPresults.FaceCorrComb{it};
             cNow1{it}(corrNow>CorCoeffCutOff,:)=NaN;
             cNow2{it}(corrNow>CorCoeffCutOff,:)=NaN;
         end 
-    case{'DispMgn','DispX','DispY','DispZ'}   
-        %Point Measure
+    case{'DispMgn','DispX','DispY','DispZ'}% Point plots    
         for it=1:nFrames
             currentPointLogic=DIC3DPPresults.PointPairInds==1;
             CorCoeffVec{it}=DIC3DPPresults.corrComb{it}(currentPointLogic,:);
@@ -82,11 +81,11 @@ if CorCoeffLogic
         end         
     end
 end
-%%
+%% Update Smooth
 switch SmoothLogic
     case 1
         switch optStruct.type
-            case {'J','Lamda1','Lamda2','Emgn','emgn','Eeq','eeq','EShearMax','eShearMax','Epc1','Epc2','epc1','epc2'}
+            case {'J','Lamda1','Lamda2','Emgn','emgn','Eeq','eeq','EShearMax','eShearMax','Epc1','Epc2','epc1','epc2'}% Face plots 
                 for it=1:1:nFrames
                     [cNow1{it}]=patchSmoothFaceMeasure(Fnow,Pnow1{it},cNow1{it},smoothPar);
                     [cNow2{it}]=patchSmoothFaceMeasure(Fnow,Pnow1{it},cNow2{it},smoothPar);                 
@@ -94,7 +93,7 @@ switch SmoothLogic
         end
     case 2
         switch optStruct.type
-            case {'J','Lamda1','Lamda2','Emgn','emgn','Eeq','eeq','EShearMax','eShearMax','Epc1','Epc2','epc1','epc2'}
+            case {'J','Lamda1','Lamda2','Emgn','emgn','Eeq','eeq','EShearMax','eShearMax','Epc1','Epc2','epc1','epc2'}% Face plots 
                 for it=1:1:nFrames
                     [cNow1{it}]=patchSmoothFaceMeasureCon(Fnow,Pnow1{it},cNow1{it},smoothPar);
                     [cNow2{it}]=patchSmoothFaceMeasureCon(Fnow,Pnow1{it},cNow2{it},smoothPar);  
@@ -102,16 +101,16 @@ switch SmoothLogic
         end
 end 
 
-%%
+%% AFter Change Faces and Points By need Input into animStruct
 switch optStruct.type
-  case {'J','Lamda1','Lamda2','Emgn','emgn','Eeq','eeq','EShearMax','eShearMax','Epc1','Epc2','epc1','epc2'}
+  case {'J','Lamda1','Lamda2','Emgn','emgn','Eeq','eeq','EShearMax','eShearMax','Epc1','Epc2','epc1','epc2'}% Face plots 
             for it=1:1:nFrames
                 animStruct.Set{it}{3}=Pnow1{it};
                 animStruct.Set{it}{4}=cNow1{it};
                 animStruct.Set{it}{5}=Pnow2{it};
                 animStruct.Set{it}{6}=cNow2{it};                        
             end    
-    case{'DispMgn','DispX','DispY','DispZ'}      %Point Measure 
+    case{'DispMgn','DispX','DispY','DispZ'} % Point plots 
             for it=1:1:nFrames
                 animStruct.Set{it}{3}=xNow1{it};
                 animStruct.Set{it}{4}=yNow1{it};
@@ -122,7 +121,7 @@ switch optStruct.type
             end    
 end
 
-%%
+%% Output
 animStructUp=animStruct;
 end
 

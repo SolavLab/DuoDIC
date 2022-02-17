@@ -189,7 +189,7 @@ end
 h_ax=gca;
 h_ax.XLim = xl; h_ax.YLim = yl; h_ax.ZLim = zl;
 h_ax.CameraUpVector=[0 0 optStruct.zDirection];
-
+view(180 ,255);
 animStruct.Time=1:nFrames;
 animStruct.Handles=cell(1,nFrames);
 animStruct.Props=cell(1,nFrames);
@@ -232,7 +232,7 @@ for it=1:nFrames
     ic=ic+1;
 end
 anim8(hf,animStruct);
-view(180,-75);
+
 
 
 

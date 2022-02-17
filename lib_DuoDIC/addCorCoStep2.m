@@ -1,8 +1,7 @@
 function []=addCorCoStep2(varargin)
 %% Viewing figures: setting face alpha
-% addFaceAlphaButton
-% addFaceAlphahButton(hf)
-
+% addCorCoStep2(varargin)
+% addCorCoStep2(hf,animStruct,Original,title);
 % This script creates a new pushtool in a figure's toolbar to manipulate
 % the transparency of a displayed image by changing its face alpha value
 %%
@@ -93,8 +92,7 @@ CorCoeffCutOff=str2double(answer{1}); % maximal correlation coefficient to displ
             end
             
         case 'faces_n_n'
-            for ii=1:n
-                
+            for ii=1:n          
                 Pnow1=Points{ii};
                 Pnow2=Points{ii+n};
                 cNow1=CorCoeffVec{ii};
@@ -109,8 +107,7 @@ CorCoeffCutOff=str2double(answer{1}); % maximal correlation coefficient to displ
                 animStruct.Set{ii}{4}=cNow1;
                 animStruct.Set{ii}{5}=Pnow2;
                 animStruct.Set{ii}{6}=cNow2; 
-            end
-            
+            end         
     end
     
     hf.UserData.anim8.animStruct=animStruct;

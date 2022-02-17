@@ -140,19 +140,6 @@ end
 if Canceled
     return
 end
-%% Select plotting options
-%{
-if ~Canceled && sum(cell2mat(Answer(2:end)))>0
-    answer = inputdlg({'Enter maximum correlation coefficient to keep points (leave blank for keeping all points)'},'Input',[1,50]);
-    CorCoeffCutOff=str2double(answer{1}); % maximal correlation coefficient for display (use [] for default which is max)
-    if isnan(CorCoeffCutOff)
-        CorCoeffCutOff=[];
-    end
-else
-    return
-end
-%}
-
 %% create option struct for plotting
 % complete the struct fields
 if ~isfield(optStruct,'zDirection')
