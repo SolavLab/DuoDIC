@@ -232,7 +232,7 @@ end
 
 %% Plot
 
-animStruct=struct;
+animStruct=struct;%here?
 
 hf=cFigure;
 hf.Units='normalized'; hf.OuterPosition=[.05 .05 .9 .9]; hf.Units='pixels';
@@ -278,10 +278,10 @@ for is=1:nStrains
     FCnow(FCnow>optStruct.dataLimits(2))=NaN;
 
     hp(is)=gpatch(Fnow,Pnow,FCnow,optStruct.lineColor,optStruct.FaceAlpha); hold on
-    hq(is)=quiver3(Vnow(:,1),Vnow(:,2),Vnow(:,3),Dnow(:,1),Dnow(:,2),Dnow(:,3),0,'Color',.2*[1 1 1],'ShowArrowHead','off','AutoScale','off');view(-180,-75); hold on;        
+    hq(is)=quiver3(Vnow(:,1),Vnow(:,2),Vnow(:,3),Dnow(:,1),Dnow(:,2),Dnow(:,3),0,'Color',.2*[1 1 1],'ShowArrowHead','off','AutoScale','off'); hold on;        
     h_ax=gca;
     h_ax.XLim = xl; h_ax.YLim = yl; h_ax.ZLim = zl;
-    h_ax.View = [180 75];
+    h_ax.View = [180 255];
     h_o=get(h_ax,'OuterPosition');
     h_p=get(h_ax,'Position');
     if colorBarLogic
@@ -360,12 +360,12 @@ if Narg==2
     hpatches=findobj(hf,'type','patch');
   % updating the view  to look like the former 
    
-   set(ha,'CameraUpVectorMode','manual')  
-   set(ha,'View',Old_set.view);
-   set(ha,'CameraViewAngle',Old_set.CameraViewAngle);
-   set(ha,'CameraPosition',Old_set.CameraPosition)
-   set(ha,'CameraTarget',Old_set.CameraTarget);
-   set(ha,'CameraUpVector',Old_set.CameraUpVector);
+   set(ha(1),'CameraUpVectorMode','manual')  
+   set(ha(1),'View',Old_set.view);
+   set(ha(1),'CameraViewAngle',Old_set.CameraViewAngle);
+   set(ha(1),'CameraPosition',Old_set.CameraPosition)
+   set(ha(1),'CameraTarget',Old_set.CameraTarget);
+   set(ha(1),'CameraUpVector',Old_set.CameraUpVector);
    drawnow;
    
   % updating the light to look like the former  
@@ -392,7 +392,7 @@ if Narg==2
     hf.UserData.optStruct.CorCoeffLogic=Old_set.CorCoeffLogic;
     animStruct=animStructUpdate(hf,animStruct,optStruct,DIC3DPPresults,Pre);
 end
-
+view(180 255);
 anim8(hf,animStruct);
  %% Adding Buttons 
 addColorbarLimitsButton(hf);

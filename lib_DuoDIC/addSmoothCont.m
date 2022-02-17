@@ -37,7 +37,7 @@ if size(S,3)==1
 end
 
 % Create a uipushtool in the toolbar
-uipushtool(hb(1),'TooltipString','Face Cleaner','CData',S,'Tag','FaceClean_button','ClickedCallback',{@Smoothner,{hf,animStruct,optStruct,DIC3DPPresults,Pre}});
+uipushtool(hb(1),'TooltipString','Smooth Face','CData',S,'Tag','SmoothFace_button','ClickedCallback',{@Smoothner,{hf,animStruct,optStruct,DIC3DPPresults,Pre}});
 end
 
 %% Face Cleaning function  FaceCleanFunc %AYS
@@ -48,6 +48,7 @@ animStruct=inputCell{2};
 DIC3DPPresults=inputCell{4};
 Pre=inputCell{5};
 optStruct=hf.UserData.optStruct;
+InputLogic=1;
 
 %% Input info from user
 smoothAnswer=questdlg('Do you want to smoothen the face values?','Smooth?','Yes','No','Yes');
@@ -56,76 +57,96 @@ switch smoothAnswer
         ConctionAnswer=questdlg('What level of connectivity?','Connectivity','One','Two','One');
         switch ConctionAnswer
             case 'One'
+                while InputLogic==1
                 prompt1={'Enter level of smooth between 0-1 (if you leave empty, the default is 0.5)','Enter number of Repetitions (if you leave empty, the default is 1)'};
                 dlgtitle ='Input';
                 dims=[1,50];
                 answer = inputdlg(prompt1,dlgtitle,dims);
+                if ~isempty(answer)
                 smoothPar.lambda1=str2double(answer{1});
                 if smoothPar.lambda1<0 ||smoothPar.lambda1>1
-                    error('Error Wrong Input')
+                        uiwait(msgbox({'Wrong input  in level of smooth'; 'The level of smooth must be between 0 - 1'},'Wrong Input') );                     
+                        InputLogic=1;
+                else
+                     InputLogic=0;
                 end
-                if isnan(smoothPar.lambda1)% Defult
-                    smoothPar.lambda1=0.5;%AYS 12/7
+                if isnan(smoothPar.lambda1)% % Default
+                    smoothPar.lambda1=0.5;
                 end
-                optStruct.Smoothlambda1=smoothPar.lambda1;%ASAF
-                smoothPar.n=str2double(answer{2});% Defult
-                if isnan(smoothPar.n)% Defult
-                    smoothPar.n=1;%AYS 12/7
+                optStruct.Smoothlambda1=smoothPar.lambda1;
+                smoothPar.n=str2double(answer{2});% % Default
+                if isnan(smoothPar.n)% % Default
+                    smoothPar.n=1;
                 else
                     if isreal(smoothPar.n) && rem(smoothPar.n,1)==0
+                        InputLogic=0;                        
                     else
-                        error('Error Wrong Input');
+                        uiwait(msgbox({'Wrong input number of Repetitions';'Input must be a natural numbers'},'Wrong Input')) ;
+                        InputLogic=1;
                     end
                 end
-                optStruct.Smoothlambda2=[];%ASAF
-                optStruct.Smoothn=smoothPar.n;%ASAF
+                optStruct.Smoothlambda2=[];
+                optStruct.Smoothn=smoothPar.n;
                 optStruct.SmoothLogic=1;
+                else
+                    break
+                end
+                end
             case 'Two'
+                while InputLogic==1                
                 prompt2={'Enter level of smooth for first level between 0-1 (if you leave empty, the default is 0.25 each )','Enter level of smooth for second level between 0-1 (if you leave empty, the default is 0.25)','Enter number of Repetition (if you leave empty, the default is 1)'};
                 dlgtitle ='Input';
                 dims=[1,50];
                 answer = inputdlg(prompt2,dlgtitle,dims);
+                if ~isempty(answer)
                 smoothPar.lambda1=str2double(answer{1});
                 smoothPar.lambda2=str2double(answer{2});
                 if smoothPar.lambda1<0 ||smoothPar.lambda2<0 ||(smoothPar.lambda2+smoothPar.lambda1)>1
-                    error('Error Wrong Input')
-                end
-                if isnan(smoothPar.lambda1)% Defult
-                    smoothPar.lambda1=0.25;%AYS 12/7
-                end
-                if isnan(smoothPar.lambda2)% Defult
-                    smoothPar.lambda2=0.25;%AYS 12/7
-                end
-                optStruct.Smoothlambda1=smoothPar.lambda1;%ASAF
-                optStruct.Smoothlambda2=smoothPar.lambda2;%ASAF
-                smoothPar.n=str2double(answer{3});% Defult
-                if isnan(smoothPar.n)% Defult
-                    smoothPar.n=1;%AYS 12/7
+                    uiwait(msgbox({'Wrong input  in level of smooth'; 'The sum of the levels must be between 0 - 1, and positive '},'Wrong Input') );
+                    InputLogic=1;
                 else
-                    if ~isreal(smoothPar.n) && (rem(smoothPar.n,1)~=0)
-                        error('Error Wrong Input');
+                     InputLogic=0;
+                end
+                if isnan(smoothPar.lambda1)% Default
+                    smoothPar.lambda1=0.25;
+                end
+                if isnan(smoothPar.lambda2)% Default
+                    smoothPar.lambda2=0.25;
+                end
+                optStruct.Smoothlambda1=smoothPar.lambda1;
+                optStruct.Smoothlambda2=smoothPar.lambda2;
+                smoothPar.n=str2double(answer{3});% Default
+                if isnan(smoothPar.n)% Default
+                    smoothPar.n=1;
+                else
+                    if isreal(smoothPar.n) && rem(smoothPar.n,1)==0
+                        InputLogic=0;                        
+                    else
+                       uiwait( msgbox({'Wrong input number of repetitions';'Input must be a natural numbers'},'Wrong Input'));
+                        InputLogic=1;
                     end
                 end
-                optStruct.Smoothn=smoothPar.n;%ASAF
+                optStruct.Smoothn=smoothPar.n;
                 optStruct.SmoothLogic=2;
+                else
+                    break
+                end                
+                end
+                
         end
     case 'No'
         optStruct.SmoothLogic=0;
 end
+
 hf.UserData.optStruct=optStruct;
-
-
-
 %% Changing plot
 animStruct=animStructUpdate(hf,animStruct,optStruct,DIC3DPPresults,Pre);
 %% Update Plot
 hf.UserData.anim8.animStruct=animStruct;
-hf.UserData.optStruct=optStruct;%ASAF
+hf.UserData.optStruct=optStruct;
 drawnow ;
 ResetPlot(hf);
 end
-
-
 %% DuoDIC: 2-camera 3D-DIC toolbox
 %% Copyright (C) 2022 Dana Solav - All rights reserved.
 %

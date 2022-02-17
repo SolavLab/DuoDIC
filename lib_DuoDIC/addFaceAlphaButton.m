@@ -28,7 +28,7 @@ if size(S,3)==1
 end
 
 % Create a uipushtool in the toolbar
-uipushtool(hb(1),'TooltipString','face alpha','CData',S,'Tag','faceAlpha_button','ClickedCallback',{@faceAlphaFunc,{hf}});
+uipushtool(hb(1),'TooltipString','Face Alpha','CData',S,'Tag','faceAlpha_button','ClickedCallback',{@faceAlphaFunc,{hf}});
 end
 
 %% Face alpha function  faceAlphaFunc

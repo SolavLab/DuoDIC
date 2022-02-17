@@ -31,7 +31,7 @@ if size(S,3)==1
 end
 
 % Create a uipushtool in the toolbar
-uipushtool(hb(1),'TooltipString','correlation coefficient','CData',S,'Tag','cc_button','ClickedCallback',{@faceAlphaFunc,{hf,animStruct,Original,kind}});
+uipushtool(hb(1),'TooltipString','Correlation Coefficient','CData',S,'Tag','CorrCoef_button','ClickedCallback',{@faceAlphaFunc,{hf,animStruct,Original,kind}});
 end
 
 %% Face alpha function  faceAlphaFunc
@@ -47,7 +47,8 @@ CorCoeffVec=Original.CorCoeffVec;
 Points=Original.Points;
 
 answer = inputdlg({'Enter maximum correlation coefficient to keep point (leave blank for keeping all points)'},...
-                   'Input',[1,50]);               
+                   'Input',[1,50]); 
+if ~isempty(answer)
 CorCoeffCutOff=str2double(answer{1}); % maximal correlation coefficient to display point (use [] for default which is keep all points)
     switch kind
         case 'points_1_2n'
@@ -67,8 +68,7 @@ CorCoeffCutOff=str2double(answer{1}); % maximal correlation coefficient to displ
                 animStruct.Set{ii}{5}=xNow2;
                 animStruct.Set{ii}{6}=yNow2;
                 animStruct.Set{ii}{7}=cNow;
-            end
-            
+            end          
         case 'points_n_n'
              if ~isempty(answer)
                 for ii=1:2*n
@@ -126,6 +126,7 @@ CorCoeffCutOff=str2double(answer{1}); % maximal correlation coefficient to displ
         set(hf.UserData.anim8.sliderHandles{1},'Value',valueSlider-1);
         set(hf.UserData.anim8.sliderHandles{1},'Value',valueSlider);
     end
+end    
 end
 
 

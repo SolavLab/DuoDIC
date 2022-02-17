@@ -46,7 +46,7 @@ switch saveButton
         savePath=[];
 end
 
-if savePath~=0
+% if savePath~=0
 
 %% 3D reconstruction
 DIC2D=load(fullfile(speckleFilePath,speckleFile));
@@ -100,6 +100,10 @@ for ii=1:nImages
     % Face correlation coefficient (worst)
     DIC3D.FaceCorrComb{1,ii}=max(DIC3D.corrComb{1,ii}(F),[],2);
 
+    %%
+    DIC3D.FacereprojectionErrors{1,ii}=max(DIC3D.reprojectionErrors{1,ii}(F),[],2);
+
+    %%
     % compute face centroids
     for iface=1:size(F,1)
         DIC3D.FaceCentroids{1,ii}(iface,:)=mean(P3D(F(iface,:),:));
@@ -128,16 +132,14 @@ if saveLogic
 end
 
  %% PLOT
-
+anim8_DIC3D_reprojectionErrors_faces(DIC3D);
 anim8_DIC3D_reconstructedPairs_faces(DIC3D);
-view(180,-75);
-
 
 %% finish
 hm=msgbox('STEP3 is completed');
 
 set(0, 'DefaultUIControlFontSize', fs);
 
-else
-    return
-end
+% else
+%     return
+% end

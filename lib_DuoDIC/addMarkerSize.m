@@ -28,33 +28,32 @@ if size(S,3)==1
 end
 
 % Create a uipushtool in the toolbar
-uipushtool(hb(1),'TooltipString','marker size','CData',S,'Tag','markerSize_button','ClickedCallback',{@MarkerChange,{hf}});
+uipushtool(hb(1),'TooltipString','Marker Size','CData',S,'Tag','markerSize_button','ClickedCallback',{@MarkerChange,{hf}});
 end
 
 %% Face alpha function  faceAlphaFunc
 
 function MarkerChange(~,~,inputCell)
-
 hf = inputCell{1};
 prompt = {'Input the size of the marker:'};
 dlg_title = 'Set Marker Size';
 answer = inputdlg( prompt,dlg_title,[1,50]);
-sizer=str2double(answer);
-if isnan(sizer)
-    sizer=36;
+if ~isempty(answer)
+    sizer=str2double(answer);
+    if isnan(sizer)
+        sizer=36;
+    end
+    hpatches = findobj(hf,'type','scatter');
+    if ~isempty(hpatches)
+       numPatches = size(hpatches,1);
+       for i = 1:numPatches
+           hpatches(i).SizeData= sizer;
+       end
+    else
+       msgbox('There are no patch objects in the figure');
+    end    
 end
-
-hpatches = findobj(hf,'type','scatter');
-if ~isempty(hpatches)
-   numPatches = size(hpatches,1);
-   for i = 1:numPatches
-       hpatches(i).SizeData= sizer;
-   end
-else
-   msgbox('There are no patch objects in the figure');
-end    
 end
-
 %% 
 % MultiDIC: a MATLAB Toolbox for Multi-View 3D Digital Image Correlation
 % 

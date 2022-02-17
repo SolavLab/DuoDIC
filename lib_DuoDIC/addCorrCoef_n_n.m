@@ -35,7 +35,7 @@ if size(S,3)==1
 end
 
 % Create a uipushtool in the toolbar
-uipushtool(hb(1),'TooltipString','Face Cleaner','CData',S,'Tag','FaceClean_button','ClickedCallback',{@FaceCleanFunc,{hf,animStruct,optStruct,DIC3DPPresults,Pre}});
+uipushtool(hb(1),'TooltipString','Correlation Coefficient','CData',S,'Tag','CorrCoef_button','ClickedCallback',{@FaceCleanFunc,{hf,animStruct,optStruct,DIC3DPPresults,Pre}});
 end
 
 %% Face Cleaning function  FaceCleanFunc %AYS
@@ -53,25 +53,24 @@ function FaceCleanFunc(~,~,inputCell)
 
 %% Input info from user
 answer = inputdlg({'Enter maximum correlation coefficient to keep points (leave blank for keeping all points)'},'Input',[1,50]);
-    CorCoeffCutOff=str2double(answer{1}); % maximal correlation coefficient for display (use [] for default which is max)
-    if isnan(CorCoeffCutOff)
-        optStruct.CorCoeffCutOff=[];
-        optStruct.CorCoeffLogic=0;
-    else
-        optStruct.CorCoeffCutOff=CorCoeffCutOff;
-        optStruct.CorCoeffLogic=1;
-    end
-
-  hf.UserData.optStruct=optStruct;
-
-
+if ~isempty(answer)
+CorCoeffCutOff=str2double(answer{1}); % maximal correlation coefficient for display (use [] for default which is max)
+if isnan(CorCoeffCutOff)
+    optStruct.CorCoeffCutOff=[];
+    optStruct.CorCoeffLogic=0;
+else
+    optStruct.CorCoeffCutOff=CorCoeffCutOff;
+    optStruct.CorCoeffLogic=1;
+end
+hf.UserData.optStruct=optStruct;
 %% Changing plot 
- animStruct=animStructUpdate_n_n(hf,animStruct,DIC3DPPresults,Pre);
+animStruct=animStructUpdate_n_n(hf,animStruct,DIC3DPPresults,Pre);
 %% Update Plot  
 hf.UserData.anim8.animStruct=animStruct;
 drawnow ;
 %% to restart image moving slider back and forth
 ResetPlot(hf);
+end
 end
 
 

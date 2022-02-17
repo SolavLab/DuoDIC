@@ -197,7 +197,7 @@ h_ax=gca;
 h_ax.XLim = xl; h_ax.YLim = yl; h_ax.ZLim = zl;
 h_ax.CameraUpVector=[0 0 optStruct.zDirection];
 
-h_ax.View = [180 -75];
+h_ax.View = [180 255];
 camzoom(0.7);
 
 animStruct.Time=1:nFrames;
@@ -253,12 +253,12 @@ hf.UserData.optStruct=optStruct;
 if Narg==2     
 	ha = findobj(hf,'type','axes');
  % updating the view  to look like the former 
-	set(ha,'CameraTarget',Old_set.CameraTarget);
-	set(ha,'CameraUpVectorMode','manual')  
-	set(ha,'View',Old_set.view);
-	set(ha,'CameraViewAngle',Old_set.CameraViewAngle);
-	set(ha,'CameraPosition',Old_set.CameraPosition);   
-	set(ha,'CameraUpVector',Old_set.CameraUpVector);
+	set(ha(1),'CameraTarget',Old_set.CameraTarget);
+	set(ha(1),'CameraUpVectorMode','manual')  
+	set(ha(1),'View',Old_set.view);
+	set(ha(1),'CameraViewAngle',Old_set.CameraViewAngle);
+	set(ha(1),'CameraPosition',Old_set.CameraPosition);   
+	set(ha(1),'CameraUpVector',Old_set.CameraUpVector);
 	drawnow;       
 	hf.UserData.optStruct.Smoothlambda1=Old_set.Smoothlambda1;
     hf.UserData.optStruct.Smoothlambda2=Old_set.Smoothlambda2;

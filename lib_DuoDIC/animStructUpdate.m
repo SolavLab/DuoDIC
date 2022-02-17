@@ -59,6 +59,7 @@ if KindPlot(2)==1 %If face measure
 	end
 	else %Point Measure
         PC=Pre;
+        Pnow=PC;
 end    
 
 %% Updating Correlation Coefficient 
@@ -93,6 +94,7 @@ if CorCoeffLogic
 end
 
 %% Update Smooth
+if KindPlot(2)==1 %If face measure 
 switch SmoothLogic
     case 1
         if structLogic %Diriction
@@ -128,7 +130,7 @@ switch SmoothLogic
             end    
         end
 end
-
+end
 %% Input into animStruct
 if KindPlot(2)==1 %If face measure 
         if structLogic %Diriction 

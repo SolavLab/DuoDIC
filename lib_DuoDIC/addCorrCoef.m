@@ -34,7 +34,7 @@ if size(S,3)==1
 end
 
 % Create a uipushtool in the toolbar
-uipushtool(hb(1),'TooltipString','Face Cleaner','CData',S,'Tag','FaceClean_button','ClickedCallback',{@FaceCleanFunc,{hf,animStruct,optStruct,DIC3DPPresults,Pre}});
+uipushtool(hb(1),'TooltipString','Correlation Coefficient','CData',S,'Tag','CorrCoef_button','ClickedCallback',{@FaceCleanFunc,{hf,animStruct,optStruct,DIC3DPPresults,Pre}});
 end
 
 %% Face Cleaning function  FaceCleanFunc %AYS
@@ -50,6 +50,7 @@ Pre=inputCell{5};
 
 %% Input info from user
 answer = inputdlg({'Enter maximum correlation coefficient to keep points (leave blank for keeping all points)'},'Input',[1,50]);
+if ~isempty(answer)
 CorCoeffCutOff=str2double(answer{1}); % maximal correlation coefficient for display (use [] for default which is max)
 if isnan(CorCoeffCutOff)
     hf.UserData.optStruct.CorCoeffCutOff=[];
@@ -68,6 +69,7 @@ animStruct=animStructUpdate(hf,animStruct,optStruct,DIC3DPPresults,Pre);
 hf.UserData.anim8.animStruct=animStruct;
 drawnow ;
 ResetPlot(hf);
+end
 end
 
 

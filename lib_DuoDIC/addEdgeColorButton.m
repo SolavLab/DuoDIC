@@ -28,7 +28,7 @@ if size(S,3)==1
 end
 
 % Create a uipushtool in the toolbar
-uipushtool(hb(1),'TooltipString','edge color','CData',S,'Tag','edgeColor_button','ClickedCallback',{@edgeColorFunc,{hf}});
+uipushtool(hb(1),'TooltipString','Edge Color','CData',S,'Tag','edgeColor_button','ClickedCallback',{@edgeColorFunc,{hf}});
 end
 
 %% Edge color function  edgeColorFunc

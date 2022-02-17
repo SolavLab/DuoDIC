@@ -655,7 +655,7 @@ hp=gpatch(Fnow,Pnow,CFnow,optStruct.lineColor,optStruct.FaceAlpha); hold on
 
 h_ax=gca;
 h_ax.XLim = xl; h_ax.YLim = yl; h_ax.ZLim = zl;
-h_ax.View = [180 -75];
+h_ax.View = [180 255];
 
 animStruct.Time=1:nFrames;
 animStruct.Handles=cell(1,nFrames);
@@ -714,12 +714,12 @@ if Narg==2
     ha = findobj(hf,'type','axes');
     hpatches=findobj(hf,'type','patch');
  % updating the view  to look like the former 
-   set(ha,'CameraUpVectorMode','manual')  
-   set(ha,'View',Old_set.view);
-   set(ha,'CameraViewAngle',Old_set.CameraViewAngle);
-   set(ha,'CameraPosition',Old_set.CameraPosition)
-   set(ha,'CameraTarget',Old_set.CameraTarget);
-   set(ha,'CameraUpVector',Old_set.CameraUpVector);    
+   set(ha(1),'CameraUpVectorMode','manual')  
+   set(ha(1),'View',Old_set.view);%Here is the problem!
+   set(ha(1),'CameraViewAngle',Old_set.CameraViewAngle);
+   set(ha(1),'CameraPosition',Old_set.CameraPosition)
+   set(ha(1),'CameraTarget',Old_set.CameraTarget);
+   set(ha(1),'CameraUpVector',Old_set.CameraUpVector);    
    drawnow;
  % updating the light to look like the former   
    if~isnan(Old_set.Lightaz)
