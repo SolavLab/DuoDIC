@@ -23,7 +23,8 @@ clearvars; close all; clc;
 %%
 fs=get(0, 'DefaultUIControlFontSize');
 set(0, 'DefaultUIControlFontSize', 14);
-warning('off','MATLAB:subscripting:noSubscriptsSpecified');
+oldWarningState1 = warning('off','MATLAB:subscripting:noSubscriptsSpecified');
+oldWarningState2 = warning('off', 'MATLAB:ui:javacomponent:FunctionToBeRemoved');
 
 %% CHOOSE PATHS OPTIONS
 % initial image path
@@ -179,4 +180,5 @@ createmodeStruct.WindowStyle = 'non-modal';
 hm=msgbox('\fontsize{16}DuoDIC STEP2 is completed','Step2 completed',createmodeStruct);
 
 set(0, 'DefaultUIControlFontSize', fs);
-
+warning(oldWarningState1);  % revert to displaying the warning
+warning(oldWarningState2);  % revert to displaying the warning

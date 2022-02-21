@@ -117,72 +117,72 @@ if Canceled
 end
 
 if Answer{2}%1
-    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'J',optStruct);
+    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'J',optStruct);
 
 end
 if Answer{3}%2
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'Lamda1',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'Lamda1',optStruct);
 
 end
 if Answer{4}%3
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'Lamda2',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'Lamda2',optStruct);
 
 end
 if Answer{5}%4
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'Epc1',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'Epc1',optStruct);
 
 end
 if Answer{6}%5
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'Epc2',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'Epc2',optStruct);
 
 end
 if Answer{7}%6
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'epc1',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'epc1',optStruct);
 
 end
 if Answer{8}%7
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'epc2',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'epc2',optStruct);
 
 end
 if Answer{9}%8
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'Emgn',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'Emgn',optStruct);
 
 end
 if Answer{10}%9
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'emgn',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'emgn',optStruct);
 
 end
 if Answer{11}%10
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'Eeq',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'Eeq',optStruct);
 
 end
 if Answer{12}%11
-     anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,1,'DispMgn',optStruct);
+     anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,'DispMgn',optStruct);
 
 end
 if Answer{13}%12
-    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'eeq',optStruct);
+    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'eeq',optStruct);
 
 end
 if Answer{14}%13
-    anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,1,'DispX',optStruct);
+    anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,'DispX',optStruct);
 
 end
 
 if Answer{15}%14
-    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'EShearMax',optStruct);
+    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'EShearMax',optStruct);
 
 end
 if Answer{16}%15
-    anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,1,'DispY',optStruct);
+    anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,'DispY',optStruct);
 
 end
 if Answer{17}%16
-    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'eShearMax',optStruct);
+    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'eShearMax',optStruct);
 
 end
 if Answer{18}%17
-    anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,1,'DispZ',optStruct);
+    anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,'DispZ',optStruct);
 
 end
 end

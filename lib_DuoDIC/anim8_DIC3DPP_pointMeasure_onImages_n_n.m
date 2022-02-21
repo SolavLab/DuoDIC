@@ -1,4 +1,4 @@
-function [] = anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,pairIndex,pointMeasureStr,varargin)
+function [] = anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,pointMeasureStr,varargin)
 %% function for plotting 3D-DIC post-processing results from step 4 projected on the 2D images
 % plotting the images with the 3D point measure results plotted on top
 % on the left side the images from the reference camera (reference image and current images), and on the right side the
@@ -12,16 +12,15 @@ function [] = anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,pairIndex,p
 % INPUT:
 
 %%
-Points=DIC3DPPresults.DIC2Dinfo{pairIndex}.Points;
-nCamRef=DIC3DPPresults.DIC2Dinfo{pairIndex}.nCamRef;
-nCamDef=DIC3DPPresults.DIC2Dinfo{pairIndex}.nCamDef;
-nImages=DIC3DPPresults.DIC2Dinfo{pairIndex}.nImages;
-currentPointLogic=DIC3DPPresults.PointPairInds==pairIndex;
+Points=DIC3DPPresults.DIC2Dinfo.Points;
+nCamRef=DIC3DPPresults.DIC2Dinfo.nCamRef;
+nCamDef=DIC3DPPresults.DIC2Dinfo.nCamDef;
+nImages=DIC3DPPresults.DIC2Dinfo.nImages;
 for ii=1:nImages
-    CorCoeffVec{ii}=DIC3DPPresults.corrComb{ii}(currentPointLogic,:);
+    CorCoeffVec{ii}=DIC3DPPresults.corrComb{ii};
 end
 
-ImPaths=DIC3DPPresults.DIC2Dinfo{pairIndex}.ImPaths;
+ImPaths=DIC3DPPresults.DIC2Dinfo.ImPaths;
 
 % if ImPaths are not valid (for example if using on another computer, ask
 % user to provide a new folder where all the images are located.
@@ -45,9 +44,9 @@ for ii=1:2*nImages
 end
 
 switch nargin
-    case 3 % in case no results were entered
+    case 2 % in case no results were entered
         optStruct=struct;
-    case 4
+    case 3
         optStruct=varargin{1};
     otherwise
         error('wrong number of input arguments');
@@ -72,27 +71,27 @@ switch pointMeasureStr
     case {'DispMgn'}
         if logicRBM
             for ii=1:nImages
-                PC{ii}=DIC3DPPresults.Disp.DispMgn_ARBM{ii}(currentPointLogic,:);
+                PC{ii}=DIC3DPPresults.Disp.DispMgn_ARBM{ii};
             end
         else
             for ii=1:nImages
-                PC{ii}=DIC3DPPresults.Disp.DispMgn{ii}(currentPointLogic,:);
+                PC{ii}=DIC3DPPresults.Disp.DispMgn{ii};
             end
         end
         cMap='parula';
     case {'DispX'}
         for ii=1:nImages
-            PC{ii}=DIC3DPPresults.Disp.DispVec{ii}(currentPointLogic,1);
+            PC{ii}=DIC3DPPresults.Disp.DispVec{ii}(:,1);
         end
         cMap='coldwarm';
     case {'DispY'}
         for ii=1:nImages
-            PC{ii}=DIC3DPPresults.Disp.DispVec{ii}(currentPointLogic,2);
+            PC{ii}=DIC3DPPresults.Disp.DispVec{ii}(:,2);
         end
         cMap='coldwarm';
     case {'DispZ'}
         for ii=1:nImages
-            PC{ii}=DIC3DPPresults.Disp.DispVec{ii}(currentPointLogic,3);
+            PC{ii}=DIC3DPPresults.Disp.DispVec{ii}(:,3);
         end
         cMap='coldwarm';
     otherwise

@@ -69,8 +69,7 @@ if CorCoeffLogic
         end 
     case{'DispMgn','DispX','DispY','DispZ'}% Point plots    
         for it=1:nFrames
-            currentPointLogic=DIC3DPPresults.PointPairInds==1;
-            CorCoeffVec{it}=DIC3DPPresults.corrComb{it}(currentPointLogic,:);
+            CorCoeffVec{it}=DIC3DPPresults.corrComb{it};
             CorCoeffVec{it}(CorCoeffVec{it}>CorCoeffCutOff)=NaN;   
             xNow1{it}=Points{it}(~isnan(CorCoeffVec{it}),1);
             yNow1{it}=Points{it}(~isnan(CorCoeffVec{it}),2);

@@ -1,4 +1,4 @@
-function [] = anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,pairIndex,faceMeasureString,varargin)
+function [] = anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,faceMeasureString,varargin)
 %% function for plotting 3D-DIC post-processing results from step 4 projected on the 2D images
 % plotting the images with the 3D face measure results plotted on top
 % on the left side the images from the reference camera (reference image and current images), and on the right side the
@@ -9,21 +9,17 @@ function [] = anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,pairIndex,fa
 % [] = anim8_DIC3D_faceMeasures_onImages_n_n(DIC3DPPresults,pairIndex,faceMeasureString,optStruct); 
 
 %%
-Points=DIC3DPPresults.DIC2Dinfo{pairIndex}.Points;
-nCamRef=DIC3DPPresults.DIC2Dinfo{pairIndex}.nCamRef;
-nCamDef=DIC3DPPresults.DIC2Dinfo{pairIndex}.nCamDef;
-nImages=DIC3DPPresults.DIC2Dinfo{pairIndex}.nImages;
-currentFacesLogic=DIC3DPPresults.FacePairInds==pairIndex;
-currentPointIndex=find(DIC3DPPresults.PointPairInds==pairIndex);
-firstCurrentPointIndex=currentPointIndex(1);
-F=DIC3DPPresults.Faces(currentFacesLogic,:);
-F=F-firstCurrentPointIndex+1;
+Points=DIC3DPPresults.DIC2Dinfo.Points;
+nCamRef=DIC3DPPresults.DIC2Dinfo.nCamRef;
+nCamDef=DIC3DPPresults.DIC2Dinfo.nCamDef;
+nImages=DIC3DPPresults.DIC2Dinfo.nImages;
+F=DIC3DPPresults.Faces;
 FaceCorr=cell(nImages,1);
 for ii=1:nImages
-    FaceCorr{ii}=DIC3DPPresults.FaceCorrComb{ii}(currentFacesLogic,:);
+    FaceCorr{ii}=DIC3DPPresults.FaceCorrComb{ii};
 end
 ImSet=cell(2*nImages,1);
-ImPaths=DIC3DPPresults.DIC2Dinfo{pairIndex}.ImPaths;
+ImPaths=DIC3DPPresults.DIC2Dinfo.ImPaths;
 
 % if ImPaths are not valid (for example if using on another computer, ask
 % user to provide a new folder where all the images are located.
@@ -46,9 +42,9 @@ for ii=1:2*nImages
 end
 
 switch nargin
-    case 3 %No results were entered
+    case 2 
         optStruct=struct;
-    case 4
+    case 3
         optStruct=varargin{1};
     otherwise
         error('wrong number of input arguments');
@@ -60,7 +56,7 @@ optStruct.type=faceMeasureString;
 switch faceMeasureString
     case {'J','Lamda1','Lamda2'}
         for ii=1:nImages
-            FC{ii}=DIC3DPPresults.Deform.(faceMeasureString){ii}(currentFacesLogic,:);
+            FC{ii}=DIC3DPPresults.Deform.(faceMeasureString){ii};
         end
         if isfield(optStruct,'cMap')
             cMap=optStruct.cMap;
@@ -78,7 +74,7 @@ switch faceMeasureString
         end
     case {'Emgn','emgn','Eeq','eeq','EShearMax','eShearMax'}
         for ii=1:nImages
-            FC{ii}=DIC3DPPresults.Deform.(faceMeasureString){ii}(currentFacesLogic,:);
+            FC{ii}=DIC3DPPresults.Deform.(faceMeasureString){ii};
         end
         if isfield(optStruct,'cMap')
             cMap=optStruct.cMap;
@@ -97,7 +93,7 @@ switch faceMeasureString
         
     case {'Epc1','Epc2','epc1','epc2'}
         for ii=1:nImages
-            FC{ii}=DIC3DPPresults.Deform.(faceMeasureString){ii}(currentFacesLogic,:);
+            FC{ii}=DIC3DPPresults.Deform.(faceMeasureString){ii};
         end
         if isfield(optStruct,'cMap')
             cMap=optStruct.cMap;
@@ -135,8 +131,6 @@ end
 for ii=1:nImages
     FC{ii}(FC{ii}<dataLimits(1) | FC{ii}>dataLimits(2))=NaN;
 end
-
-
 
 %% plot
 hf=cFigure;

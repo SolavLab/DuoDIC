@@ -20,7 +20,9 @@ clear all; close all; clc;
 %%
 fs=get(0, 'DefaultUIControlFontSize');
 set(0, 'DefaultUIControlFontSize', 14);
-warning('off','MATLAB:subscripting:noSubscriptsSpecified');
+% turn off warnings
+oldWarningState1 = warning('off','MATLAB:subscripting:noSubscriptsSpecified');
+oldWarningState2 = warning('off', 'MATLAB:ui:javacomponent:FunctionToBeRemoved');
 
 %%
 % initial image path
@@ -52,9 +54,13 @@ stereoCameraCalibrator(folderPath1, folderPath2, squareSize);
 disp('Press any key to continue')
 pause
 
+%%
 hm=msgbox({'\fontsize{14}DuoDIC STEP1 is completed'},'DuoDIC STEP1 is completed',createmodeStruct);
 
+%%
 set(0, 'DefaultUIControlFontSize', fs);
+warning(oldWarningState1);  % revert to displaying the warning
+warning(oldWarningState2);  % revert to displaying the warning
 
 
 

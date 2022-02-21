@@ -1,26 +1,12 @@
 function []=anim8_DIC3D_reprojectionErrors_faces(DIC3D,varargin)
-%% function for plotting 3D-DIC results of face measures in STEP3.
-% plotting 3D surfaces from camera pairs, animation changing
-% with time, and the faces colored according to faceMeasureString 
-% this function is called in plotMultiDICPairResults
+%% function for plotting 3D-DIC 3D reconstruction results of reprojection errors in STEP3.
+% plotting 3D points and meshes, animation changing with time, and the faces colored according to the reprojection errors. 
+% this function is called in the end of Step3.
 %
 % Options:
-% anim8_DIC_3D_pairs_faceMeasure(DIC3DAllPairsResults,faceMeasureString)
-% anim8_DIC_3D_pairs_faceMeasure(DIC3DAllPairsResults,faceMeasureString,optStruct)
-% 
-% Inputs:
-% * DIC3DAllPairsResults
-% * faceMeasureString: can be any of the following:
-%   'dispMgn','dispX','dispY','dispZ','FaceColors','FaceIsoInd','pairInd'
-% * optStruct: optional structure for plotting options which may include any of the following fields:
-%   - smoothLogic: logical variable for smoothing (true)/not smoothing (false) the face measure 
-%   - FaceAlpha: transparacy of the faces (scalar between 0 and 1, where zero is transparent and 1 is opaque) 
-%   - colorBarLimits: a 2x1 scalar vector for the colobar limits. if not set, it's automatic
-%   - dataLimits: a 2x1 scalar vector for the data limits of the face measure. if a face measure is outside these limits, it is set to NaN. if not set no face is set to NaN
-%   - colorMap
-%   - zDirection: 1 for z up and -1 for z down
-%   - lineColor: line color for the mesh. can be for example 'b','k','none',etc...
-%   - TitleString=faceMeasureString;
+% anim8_DIC3D_reprojectionErrors_faces(DIC3D)
+% anim8_DIC3D_reprojectionErrors_faces(DIC3D,optStruct)
+%
 
 %% Assign plot options
 Narg=numel(varargin);
@@ -52,7 +38,6 @@ end
 
 %%
 nFrames=numel(DIC3D.Points3D);
-nPairs=1;
 
 %% Assign the right face measure into FC
 FC=cell(nFrames,1);
@@ -82,7 +67,7 @@ for it=1:nFrames
 end
 VCmat = cell2mat(VC);
 if ~isfield(optStruct,'colorBarLimits')
-    optStruct.colorBarLimits=[0 prctile(VCmat(:),100)];
+    optStruct.colorBarLimits=[prctile(VCmat(:),0) prctile(VCmat(:),100)];
 end
 
 %% Plot
@@ -102,7 +87,7 @@ if colorBarLogic
     cbh=colorbar;
     cbh.FontSize=16;
     caxis(optStruct.colorBarLimits);
-    title(cbh,{'Reprojection';'Errors'},'FontSize',16);
+    title(cbh,{'Reprojection';'Error [pix]'},'FontSize',16);
 end
 
 gtitle('3D reconstruction results. Press Play to start animation',20);
@@ -136,8 +121,8 @@ animStruct.Set=cell(1,nFrames);
 ic=1;
 for it=1:nFrames
     animStruct.Handles{ic}=[];
-    animStruct.Props{ic}=cell(1,2*nPairs);
-    animStruct.Set{ic}=cell(1,2*nPairs);
+    animStruct.Props{ic}=cell(1,2);
+    animStruct.Set{ic}=cell(1,2);
     
         Fnow=DIC3D.Faces;
         Pnow=DIC3D.Points3D{it};

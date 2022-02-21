@@ -22,7 +22,8 @@ clear all; close all; clc;
 %%
 fs=get(0, 'DefaultUIControlFontSize');
 set(0, 'DefaultUIControlFontSize', 16);
-warning('off','MATLAB:subscripting:noSubscriptsSpecified');
+oldWarningState1 = warning('off','MATLAB:subscripting:noSubscriptsSpecified');
+oldWarningState2 = warning('off', 'MATLAB:ui:javacomponent:FunctionToBeRemoved');
 
 %% select 2D-DIC file and calibration file
 % select DIC2DpairResults structure
@@ -117,7 +118,7 @@ end
 delete(hw);
 
 
-DIC3D.DIC2Dinfo{1}=DIC2D;
+DIC3D.DIC2Dinfo=DIC2D;
 
 %% save 
 
@@ -139,7 +140,6 @@ anim8_DIC3D_reconstructedPairs_faces(DIC3D);
 hm=msgbox('STEP3 is completed');
 
 set(0, 'DefaultUIControlFontSize', fs);
+warning(oldWarningState1);  % revert to displaying the warning
+warning(oldWarningState2);  % revert to displaying the warning
 
-% else
-%     return
-% end

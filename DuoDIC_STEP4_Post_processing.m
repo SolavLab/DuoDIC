@@ -20,7 +20,8 @@ clearvars; close all
 
 fs=get(0, 'DefaultUIControlFontSize');
 set(0, 'DefaultUIControlFontSize', 14);
-warning('off','MATLAB:subscripting:noSubscriptsSpecified');
+oldWarningState1 = warning('off','MATLAB:subscripting:noSubscriptsSpecified');
+oldWarningState2 = warning('off', 'MATLAB:ui:javacomponent:FunctionToBeRemoved');
 
 %% CHOOSE PATHS OPTIONS
 
@@ -34,7 +35,6 @@ DIC3D=DIC3D.(DIC3Dname{1});
 
 % save 3D-DIC post processing results? choose save path and overwrite options
 [save3DDIClogic,savePath]=Qsave3DDICPPresults(path);
-
 
 %% 3D reconstruction using Direct Linear Transformation
 
@@ -138,4 +138,7 @@ h=msgbox('STEP4 is completed');
 h.CurrentAxes.Children.FontSize=11;
 
 set(0, 'DefaultUIControlFontSize', fs);
+warning(oldWarningState1);  % revert to displaying the warning
+warning(oldWarningState2);  % revert to displaying the warning
+
 
