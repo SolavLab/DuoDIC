@@ -56,72 +56,72 @@ indx=src.Value-1;
 %% Plot new figure
 
 if indx==1
-    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'J',optStruct);
+    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'J',optStruct);
 
 end
 if indx==2
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'Lamda1',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'Lamda1',optStruct);
 
 end
 if indx==3
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'Lamda2',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'Lamda2',optStruct);
 
 end
 if indx==4
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'Epc1',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'Epc1',optStruct);
 
 end
 if indx==5
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'Epc2',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'Epc2',optStruct);
 
 end
 if indx==6
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'epc1',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'epc1',optStruct);
 
 end
 if indx==7
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'epc2',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'epc2',optStruct);
 
 end
 if indx==8
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'Emgn',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'Emgn',optStruct);
 
 end
 if indx==9
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'emgn',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'emgn',optStruct);
 
 end
 if indx==10
-     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'Eeq',optStruct);
+     anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'Eeq',optStruct);
 
 end
 if indx==11
-     anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,1,'DispMgn',optStruct);
+     anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,'DispMgn',optStruct);
 
 end
 if indx==12
-    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'eeq',optStruct);
+    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'eeq',optStruct);
 
 end
 if indx==13
-    anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,1,'DispX',optStruct);
+    anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,'DispX',optStruct);
 
 end
 
 if indx==14
-    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'EShearMax',optStruct);
+    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'EShearMax',optStruct);
 
 end
 if indx==15
-    anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,1,'DispY',optStruct);
+    anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,'DispY',optStruct);
 
 end
 if indx==16
-    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,1,'eShearMax',optStruct);
+    anim8_DIC3DPP_faceMeasure_onImages_n_n(DIC3DPPresults,'eShearMax',optStruct);
 
 end
 if indx==17
-    anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,1,'DispZ',optStruct);
+    anim8_DIC3DPP_pointMeasure_onImages_n_n(DIC3DPPresults,'DispZ',optStruct);
 
 end
 end
