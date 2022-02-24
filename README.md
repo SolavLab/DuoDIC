@@ -37,7 +37,10 @@ Check out the [instruction manual](https://github.com/SolavLab/DuoDIC/blob/maste
 
 ## Citing <a name="Cite"></a>   
 This is the official repository for the paper:
-`coming soon`
+
+[DuoDIC: 3D Digital Image Correlation in MATLAB'](https://github.com/SolavLab/DuoDIC/blob/main/paper/paper.md)   
+DOI: [`Coming soon`]
+
 Please cite this paper if you use the toolbox.
 
 ## Contributing <a name="Contributing"></a>   
