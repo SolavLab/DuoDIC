@@ -74,7 +74,8 @@ To assess the metrological performance of `DuoDIC`, we performed a rigid body mo
 
 ![Translation errors representing the difference between the translations measured by the translation stage and those computed using `DuoDIC`.\label{fig:disp_err}](fig_disp_err.png)
 
-![Strain values measurements during the RBM test represent the errors in the strain measurement. \label{fig:strains}](fig_strains.png)
+![Strain values measurements during the RBM test represent the errors in the strain measurement.\label{fig:strains}](fig_strains.png)
+
 <!-- ![Displacement and strain errors.\label{fig:errors}](fig_errors.png) -->
 
 # Acknowledgements
