@@ -187,9 +187,9 @@ for ii=1:nImages
 end
 
 %% Turn  the toolbar on the figure off
-ha = findobj(hf,'type','axes');
-ha(1).Toolbar.Visible = 'off';
-ha(2).Toolbar.Visible = 'off';
+% ha = findobj(hf,'type','axes');
+% ha(1).Toolbar.Visible = 'off';
+% ha(2).Toolbar.Visible = 'off';
 %%
 if ~isfield(hf.UserData,'optStruct')
     hf.UserData.optStruct=optStruct;
@@ -200,7 +200,8 @@ anim8(hf,animStruct);
 addFigureButtons;
 addSmoothCont_n_n(hf,animStruct,optStruct,DIC3DPPresults,Pre);
 addCorrCoef_n_n(hf,animStruct,optStruct,DIC3DPPresults,Pre);
-optStructOld=optStruct; addChangePlotMenu_n_n(hf,DIC3DPPresults,optStructOld);
+optStructOld=optStruct; 
+addChangePlotMenu_n_n(hf,DIC3DPPresults,optStructOld);
 end
 
 

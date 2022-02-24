@@ -180,9 +180,9 @@ for ii=1:nImages
     animStruct.Set{ii}={repmat(ImSet{ii},1,1,3),repmat(ImSet{ii+nImages},1,1,3),xNow1,yNow1,cNow1,xNow2,yNow2,cNow2,TitleNow1,TitleNow2}; %Property values for to set in order to animate
 end
 %% Turn  the toolbar on the figure off
-ha = findobj(hf,'type','axes');
-ha(1).Toolbar.Visible = 'off';
-ha(2).Toolbar.Visible = 'off';
+% ha = findobj(hf,'type','axes');
+% ha(1).Toolbar.Visible = 'off';
+% ha(2).Toolbar.Visible = 'off';
 
 %%
 if ~isfield(hf.UserData,'optStruct')
