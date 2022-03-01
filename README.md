@@ -29,7 +29,7 @@ Use **one** of these two options:
 **a.** Clone `DuoDIC` using: `git clone https://github.com/SolavLab/DuoDIC.git`.    
 **b.** Download and unzip the latest [zip file](https://github.com/SolavLab/DuoDIC/archive/refs/heads/main.zip).   
 
-#### 2. Install (or add to path)    
+#### 2. Install
 In MATLAB, navigate to the (unzipped) `DuoDIC` folder, type `installDuoDIC` in the command window, and hit Enter.   
 
 ## Getting started <a name="Start"></a>
