@@ -57,7 +57,7 @@ switch smoothAnswer
         ConctionAnswer=questdlg('What level of connectivity?','Connectivity','One','Two','One');
         switch ConctionAnswer
             case 'One'
-                while InputLogic==1% Makeing sure th eright Input 
+                while InputLogic==1% Makeing sure the right Input 
                 prompt1={'Enter level of smooth between 0-1 (if you leave empty, the default is 0.5)','Enter number of Repetitions (if you leave empty, the default is 1)'};
                 dlgtitle ='Input';
                 dims=[1,50];
