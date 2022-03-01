@@ -1,4 +1,4 @@
-# `DuoDIC`: a `MATLAB` Toolbox for 2-camera stereo 3D Digital Image Correlation (3D-DIC)  
+# `DuoDIC`: a `MATLAB` Toolbox for stereo 3D Digital Image Correlation (3D-DIC)  
 
 - [Summary](#Summary)  
 - [Installation](#Installation)  
