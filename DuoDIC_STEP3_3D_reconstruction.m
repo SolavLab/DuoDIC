@@ -29,7 +29,7 @@ oldWarningState2 = warning('off', 'MATLAB:ui:javacomponent:FunctionToBeRemoved')
 % select DIC2DpairResults structure
 PathInitial=pwd;
 [speckleFile,speckleFilePath]=uigetfile(PathInitial,'Select a 2D-DIC results file (from STEP2)');
-[calibrationFile,calibrationFilePath]=uigetfile(fileparts(speckleFilePath),'Select calibration session results file (from STEP1)');
+[calibrationFile,calibrationFilePath]=uigetfile(fileparts(speckleFilePath),'Select calibrationSession.mat results file (from STEP1)');
 
 %% save 3D-DIC results? choose save path and overwrite options
 
