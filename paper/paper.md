@@ -82,7 +82,7 @@ To assess the metrological performance of `DuoDIC`, we performed a rigid body mo
 <!-- ![Displacement and strain errors.\label{fig:errors}](fig_errors.png) -->
 
 # Limitations
-The main limitations of `DuoDIC` are currently: (1) The number and/or total size of images that can be processed together is limited by Ncorr's memory limitation; (2) Ncorr's seed placement process might fail to correctly place the seeds in cases of large deformation, especially if, in addition, the stereo angle between the cameras is large.
+The main limitations of `DuoDIC` are currently: (1) The number and/or total size of images that can be processed together is limited by `Ncorr`'s memory limitation; (2) `Ncorr`'s seed placement process might fail to correctly place the seeds in cases of large deformation, especially if, in addition, the stereo angle between the cameras is large.
 
 # Acknowledgements
 This project was supported by Dana Solav's Jacques Lewiner Career Advancement Chair.
