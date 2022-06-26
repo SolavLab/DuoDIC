@@ -10,7 +10,7 @@ tags:
   - Stereo camera calibration
 authors:
   - name: Dana Solav^[corresponding author]
-    orcid: 0000-0003-0872-7098
+    orcid: 0000-0003-3215-0401
     affiliation: "1"
   - name: Asaf Silverstein
     affiliation: "1"
