@@ -338,7 +338,10 @@ for it=1:nFrames
         animStruct.Set{it}{5+8*(is-1)}=Vnow(:,3); %Property values for to set in order to animate
         animStruct.Set{it}{6+8*(is-1)}=Dnow(:,1); %Property values for to set in order to animate
         animStruct.Set{it}{7+8*(is-1)}=Dnow(:,2); %Property values for to set in order to animate
-        animStruct.Set{it}{8+8*(is-1)}=Dnow(:,3); %Property values for to set in order to animate       
+        animStruct.Set{it}{8+8*(is-1)}=Dnow(:,3); %Property values for to set in order to animate         
+        
+        animStruct.Set{it}{8*(nStrains)+is}=getPointValue(Fnow,Pnow,FCnow);%AYS Color Point
+        
         h_ax.XLim = xl; h_ax.YLim = yl; h_ax.ZLim = zl;
         
     end
@@ -392,6 +395,7 @@ if Narg==2
 end
 anim8(hf,animStruct);
  %% Adding Buttons 
+addDataTip(hf,animStruct);
 addColorbarLimitsButton(hf);
 addColormapButton(hf);
 addEdgeColorButton(hf);

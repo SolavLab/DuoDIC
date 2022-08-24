@@ -283,11 +283,11 @@ if Answer{32}
   
 end
 if Answer{33}
-    anim8_DIC3DPP_faceMeasureDirection(DIC3DPPresults,{'EShearMax1','EShearMax2'},RBMlogic,optStruct);%AYS
+    anim8_DIC3DPP_faceMeasureDirection(DIC3DPPresults,{'EShearMax1','EShearMax2'},RBMlogic,optStruct);
     
 end
 if Answer{34}
-    anim8_DIC3DPP_faceMeasureDirection(DIC3DPPresults,{'eShearMax1','eShearMax2'},RBMlogic,optStruct);%AYS
+    anim8_DIC3DPP_faceMeasureDirection(DIC3DPPresults,{'eShearMax1','eShearMax2'},RBMlogic,optStruct);
     
 end
 if Answer{35}

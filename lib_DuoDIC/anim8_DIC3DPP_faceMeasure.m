@@ -686,6 +686,8 @@ for it=1:nFrames
     animStruct.Set{it}{1}=CFnow;
     animStruct.Set{it}{2}=Pnow; %Property values for to set in order to animate
     
+    animStruct.Set{it}{3}=getPointValue(Fnow,Pnow,CFnow);%AYS
+    
     h_ax.XLim = xl; h_ax.YLim = yl; h_ax.ZLim = zl;
     
 end
@@ -748,6 +750,7 @@ end
 anim8(hf,animStruct);
 
 %% Buttons
+addDataTip(hf,animStruct);
 addColorbarLimitsButton(hf);
 addColormapButton(hf);
 addEdgeColorButton(hf);
