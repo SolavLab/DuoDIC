@@ -451,6 +451,7 @@ hf=inputCell{1};
 jSlider=inputCell{2};
 animStruct=hf.UserData.anim8.animStruct;
 
+%%
 sliderValue=get(jSlider,'Value');
 
 T=animStruct.Time(sliderValue);
@@ -467,8 +468,12 @@ for q=1:1:numel(H)
     h.(p)=s;% Setting the property
 end
 
+%% Updating Datatip
+dcm = datacursormode( hf );%AYS
+if strcmp(dcm.Enable,'on')   
+     set(dcm,'UpdateFcn',{@updateDataCursor,{hf,animStruct,sliderValue}});
 end
-
+end
 %% Shift slider
 
 function shiftSlider(jSlider,shiftMag)
@@ -487,7 +492,43 @@ else
     set(jSlider,'Value',sliderValueNew);
 end
 
+
 end
+
+%% Display value of Datatip  
+function displayText = updateDataCursor(~,event_obj,inputCell)
+% 
+	hf=inputCell{1};
+	animStruct = inputCell{2}; 
+	sliderValue=inputCell{3};
+    KindPlot=class(animStruct.Handles{1});
+    
+    switch KindPlot
+        case 'matlab.graphics.primitive.Patch'
+        	pos = get(event_obj,'Position');
+        	indx=find(animStruct.Set{sliderValue}{2}==pos);
+            value=animStruct.Set{sliderValue}{3}(indx(1));
+            displayText = {['[X,Y,Z]: [',num2str(pos(1),2), ' ',  num2str(pos(2),2),' ', num2str(pos(3),2),']'], ['Value: ',num2str(value)]};
+        case 'matlab.graphics.primitive.Data'
+            nStrains=numel(hf.UserData.optStruct.supTitleString);
+            for jj=1:nStrains %Finding the subplot                               
+                if (hf.UserData.optStruct.supTitleString{jj} ==event_obj.Target.Parent.Title.String)
+                    is=jj;
+                end
+            end
+            pos = get(event_obj,'Position');
+        	indx=find(animStruct.Set{sliderValue}{2+8*(is-1)}==pos);
+            value= animStruct.Set{sliderValue}{8*(nStrains)+is}(indx(1));
+            displayText = {['[X,Y,Z]: [',num2str(pos(1),2), ' ',  num2str(pos(2),2),' ', num2str(pos(3),2),']'], ['Value: ',num2str(value)]};  
+        case 'matlab.graphics.chart.primitive.Scatter'
+            pos = get(event_obj,'Position');
+            Pnow=[animStruct.Set{sliderValue}{1},animStruct.Set{sliderValue}{2},animStruct.Set{sliderValue}{3}];
+            indx=find(Pnow==pos);
+            value= animStruct.Set{sliderValue}{4}(indx(1));
+            displayText = {['[X,Y,Z]: [',num2str(pos(1),2), ' ',  num2str(pos(2),2),' ', num2str(pos(3),2),']'], ['Value: ',num2str(value)]}; 
+    end
+    
+  end
 
  
 %% 

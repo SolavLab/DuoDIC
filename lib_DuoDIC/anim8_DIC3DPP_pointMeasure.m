@@ -274,6 +274,7 @@ else
 end
 anim8(hf,animStruct);
  %% Adding Buttons 
+addDataTip(hf,animStruct);
 addColorbarLimitsButton(hf);
 addColormapButton(hf); 
 addCorrCoef(hf,animStruct,optStruct,DIC3DPPresults,Pre);

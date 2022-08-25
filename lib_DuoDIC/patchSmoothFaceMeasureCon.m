@@ -44,7 +44,6 @@ for ii=1:size(faceFaceConnectivity,1)
     end
 end
 
-%% Problem: you cant add both lambda it gets  smaller then 1
 for qIter=1:smoothPar.n 
     %Loop for all dimensions
     %Takeing the next face
