@@ -7,7 +7,6 @@ function []=plot_DuoDIC_PPresults(varargin)
 % INPUT options:
 % DIC3DPPresults
 
-
 %%
 switch nargin
     case 0 % in case no results were entered
@@ -305,7 +304,6 @@ end
 
 
 end
-
 
 
 %% DuoDIC: 2-camera 3D-DIC toolbox
