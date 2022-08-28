@@ -1,13 +1,11 @@
 function []=addDataTip(varargin)
-%% Viewing figures: changing quiver factor
-% addValuePointer
-% addValuePointer(hf,animStruct)
+%% addDataTip(hf,animStruct)
 
 % This script creates a new pushtool in a figure's toolbar to manipulate
 % Gives datatip by pressing on the figure, Outputs X,Y,Z and
 % Value. By pressing again on icon the datatip will disappear. To get
 % multiple data tips, hold the Shift key while clicking the data points.
-%%
+
 switch nargin
     case 0
         hf=gcf;
@@ -94,14 +92,11 @@ end
 
   
 
-%% 
-% MultiDIC: a MATLAB Toolbox for Multi-View 3D Digital Image Correlation
-% 
-% License: <https://github.com/MultiDIC/MultiDIC/blob/master/LICENSE.txt>
-% 
-% Copyright (C) 2018  Dana Solav
-% 
-% Modified by Rana Odabas 2018
-% 
-% If you use the toolbox/function for your research, please cite our paper:
-% <https://engrxiv.org/fv47e>
+%% DuoDIC: 2-camera 3D-DIC toolbox
+%% Copyright (C) 2022 Dana Solav - All rights reserved.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+%
+%% If used in published OR commercial work, please contact [danas@technion.ac.il] for citation and license information
