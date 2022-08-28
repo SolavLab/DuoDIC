@@ -47,12 +47,19 @@ switch  dcm.Enable
         dcm.Enable = 'on';
         dcm.SnapToDataVertex='on';
         set(dcm,'UpdateFcn',{@updateDataCursor,{hf,animStruct}});
-    case 'on' %Turning the datatip on and deleting the data that is on figure
-        dcm.removeAllDataCursors()
-        dcm.UpdateFcn = [];          
+        set(hf,'KeyPressFcn', {@figKeyPressFunc,{hf}})
+    case 'on' %Turning the datatip on and deleting the data that is on figure       
         dcm.Enable = 'off';
+        plotButton = questdlg('Do you want to clear the Datatip?', 'Datatip?', 'Yes', 'No', 'Yes');
+        switch plotButton
+            case 'Yes'
+                dcm.removeAllDataCursors()
+                dcm.UpdateFcn = [];                  
+        end
 end
+
 end
+
 %% Display value  of Datatips
 % Callback that producing the datatip 
 function displayText = updateDataCursor(~,event_obj,inputCell)
@@ -83,7 +90,9 @@ function displayText = updateDataCursor(~,event_obj,inputCell)
             value= animStruct.Set{sliderValue}{4}(indx(1));
             displayText = {['[X,Y,Z]: [',num2str(pos(1),2), ' ',  num2str(pos(2),2),' ', num2str(pos(3),2),']'], ['Value: ',num2str(value)]}; 
     end   
-  end
+end
+
+  
 
 %% 
 % MultiDIC: a MATLAB Toolbox for Multi-View 3D Digital Image Correlation
