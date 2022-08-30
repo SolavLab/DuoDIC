@@ -269,7 +269,7 @@ if Narg==2
 	animStruct=animStructUpdate(hf,animStruct,optStruct,DIC3DPPresults,Pre);
 	addChangePlotMenu(hf,DIC3DPPresults,optStructOld,RBMlogic,Old_set); 
 else
-   addChangePlotMenu(hf,DIC3DPPresults,optStructOld,RBMlogic);
+    addChangePlotMenu(hf,DIC3DPPresults,optStructOld,RBMlogic);
    
 end
 anim8(hf,animStruct);
