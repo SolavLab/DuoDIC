@@ -83,6 +83,13 @@ Formats(8,2).type='check';
 Formats(9,1).type='check';
 Formats(9,2).type='check';
 
+
+
+
+
+
+
+ 
  
 DefAns=cell(numel(Prompt),1);
 DefAns{1}=[];
@@ -101,6 +108,19 @@ if Answer{13}
     end
 end
 
+%% create option struct for plotting
+% complete the struct fields
+if ~isfield(optStruct,'zDirection')
+    optStruct.zDirection=1;
+end
+%optStruct.maxCorrCoeff=CorCoeffCutOff; 
+%optStruct.maxCorrCoeff=1;
+% optStruct.lineColor='k';
+ optStruct.smoothLogic=0;
+% optStruct.colorMap=cMap;
+% optStruct.supTitleString=pointMeasureString;
+RBMlogic=0;
+
 %% plot according to answer
 
 if Canceled
@@ -108,51 +128,24 @@ if Canceled
 end
 
 if Answer{2}
-    anim8_DIC3DPP_pointMeasureMatchID(DIC3DPPresults,'DispX',optStruct);
-end
-
-if Answer{3}
-    anim8_DIC3DPP_pointMeasureMatchID(DIC3DPPresults,'Exx',optStruct);
-end
-
-if Answer{4}
-    anim8_DIC3DPP_pointMeasureMatchID(DIC3DPPresults,'DispY',optStruct);
-end
-
-if Answer{5}
-    anim8_DIC3DPP_pointMeasureMatchID(DIC3DPPresults,'Eyy',optStruct);
-end
-
-if Answer{6}
-    anim8_DIC3DPP_pointMeasureMatchID(DIC3DPPresults,'DispZ',optStruct);
-end
-
-if Answer{7}
-    anim8_DIC3DPP_pointMeasureMatchID(DIC3DPPresults,'Exy',optStruct);
-end
-
-if Answer{8}
     anim8_DIC3DPP_pointMeasureMatchID(DIC3DPPresults,'corrComb',optStruct);
+    
 end
+if Answer{3}
+    anim8_DIC3DPP_pointMeasure(DIC3DPPresults,'DispMgn',optStruct);
 
-if Answer{9}
-    anim8_DIC3DPP_pointMeasureMatchID(DIC3DPPresults,'Gamma',optStruct);
 end
+if Answer{4}
 
-if Answer{10}
-    anim8_DIC3DPP_pointMeasureMatchID(DIC3DPPresults,'DispMgn',optStruct);
+   anim8_DIC3DPP_pointMeasure(DIC3DPPresults,'DispX',RBMlogic,optStruct);
 end
+if Answer{5}
+     anim8_DIC3DPP_pointMeasure(DIC3DPPresults,'DispY',RBMlogic,optStruct);
 
-if Answer{11}
-    anim8_DIC3DPP_pointMeasureMatchID(DIC3DPPresults,'EI',optStruct);
+   
 end
-
-if Answer{12}
-    anim8_DIC3DPP_pointMeasureMatchID(DIC3DPPresults,'EII',optStruct);
-end
-
-if Answer{14}
-    anim8_DIC3DPP_pointMeasureMatchID(DIC3DPPresults,'VonMises',optStruct);
+if Answer{6}
+      anim8_DIC3DPP_pointMeasure(DIC3DPPresults,'DispZ',RBMlogic,optStruct);
 end
 
 
