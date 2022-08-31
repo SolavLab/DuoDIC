@@ -32,10 +32,10 @@ Use **one** of these two options:
 **b.** Download and unzip the latest [zip file](https://github.com/SolavLab/DuoDIC/archive/refs/heads/main.zip).   
 
 #### 2. Install
-In MATLAB, navigate to the (unzipped) `DuoDIC` folder, type `installDuoDIC` in the command window, and hit Enter.   
+In MATLAB, navigate to the (unzipped) `DuoDIC` folder, type `install_DuoDIC` in the command window, and hit Enter.
 
 ## Getting started <a name="Start"></a>
-Check out the [instruction manual](https://github.com/SolavLab/DuoDIC/blob/master/docs/instructions/DuoDIC_v_1_1_0_instruction_manual.pdf). It should have all the information you need to get started.
+Check out the [instruction manual](docs/instructions/DuoDIC_instruction_manual_1_1_0.pdf). It should have all the information you need to get started.
 
 ## Citing <a name="Cite"></a>   
 This is the official repository for the paper:
